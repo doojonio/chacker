@@ -1,3 +1,4 @@
 ---
 secrets:
   - 4a9b8b78b8ad9034c1e880666ac5ec29ede6a857
+database: 'postgresql://chacker:tzuyu99@localhost/chacker'
