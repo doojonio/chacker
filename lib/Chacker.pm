@@ -6,7 +6,8 @@ sub startup ($app) {
   $app->setup_plugins;
   $app->setup_webidentity;
   $app->setup_db;
-  $app->setup_routes;
+  $app->setup_helpers;
+  $app->setup_routes
 }
 
 sub setup_plugins ($app) {
@@ -26,6 +27,25 @@ sub setup_db ($app) {
 
 sub setup_routes($app) {
   my $r = $app->routes;
+  my $api = $r->any('/api');
+  $api->post('/challenge')->to('challenge#add');
+}
+
+sub setup_helpers ($app) {
+  $app->helper('api.cool' => sub ($c, %data) {
+    $c->render(json => \%data, status => 200)
+  });
+  $app->helper('api.sad' => sub ($c, $reason) {
+    $c->render(json => { error => $reason }, status => 400)
+  });
+
+  $app->helper('chop' => sub ($app, $hash, $fields) {
+    my %choped;
+    $fields->each(sub {
+      $choped{$_} = $hash->{$_} if $_ ne 'id'
+    });
+    return \%choped;
+  });
 }
 
 1;
