@@ -8,7 +8,9 @@ has f_challenges => sub{c(qw'id title description')};
 
 sub add ($m, $challenge) {
   my $choped_ch = $m->app->chop($challenge, $m->f_challenges);
-  $m->app->db->insert($m->t_challenges, $choped_ch, { returning => 'id' })->hash->{id};
+  my $id = $m->app->db->insert($m->t_challenges, $choped_ch, { returning => 'id' })->hash->{id};
+  $m->app->model('challenge-task')->add($id, c(@{$challenge->{tasks}}));
+  return $id;
 }
 
 1;
