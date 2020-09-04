@@ -13,6 +13,16 @@ my $challenge = {
       title       => 'Task#1',
       description => 'Description for task#1',
       type        => 'checklist',
+      items       => [
+        {
+          title   => 'Read book',
+          checked => \1,
+        },
+        {
+          title   => 'Do 25 pushups',
+          checked => \0,
+        },
+      ],
     },
   ],
 };
