@@ -12,6 +12,7 @@ sub add ($m, $challenge_id, $tasks) {
   my $choped_tasks = c;
   $tasks->each(sub{
     $_->{challenge_id} = $challenge_id;
+    $_->{state} //= 'new';
     push @$choped_tasks, $m->app->chop($_, $m->f_tasks);
   });
   $choped_tasks->each(sub ($task, $num) {
