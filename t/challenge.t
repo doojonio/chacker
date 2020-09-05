@@ -17,6 +17,12 @@ my $challenge = {
   ],
 };
 
-$t->post_ok('/api/challenge' => {Accept => '*/*'} => json => $challenge)->json_like('/id' => qr/^\d+$/);
+$t->post_ok('/api/challenge' => {Accept => '*/*'} => json => $challenge)
+  ->status_is(200)
+  ->json_like('/id' => qr/^\d+$/);
+
+$t->get_ok('/api/challenge')
+  ->status_is(200)
+  ->json_has('/challenges/1');
 
 &done_testing;

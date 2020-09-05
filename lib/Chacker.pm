@@ -29,6 +29,7 @@ sub setup_routes($app) {
   my $r = $app->routes;
   my $api = $r->any('/api');
   $api->post('/challenge')->to('challenge#add');
+  $api->get('/challenge')->to('challenge#list');
 }
 
 sub setup_helpers ($app) {
@@ -41,9 +42,9 @@ sub setup_helpers ($app) {
 
   $app->helper('chop' => sub ($app, $hash, $fields) {
     my %choped;
-    $fields->each(sub {
+    for (@$fields) {
       $choped{$_} = $hash->{$_} if $_ ne 'id'
-    });
+    }
     return \%choped;
   });
 }
