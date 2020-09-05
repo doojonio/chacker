@@ -2,7 +2,6 @@ package Chacker::Model::Challenge::Task;
 
 use Mojo::Base 'MojoX::Model', -signatures;
 use Mojo::Collection 'c';
-use experimental 'smartmatch';
 
 has t_tasks     => 'tasks';
 has f_tasks     => sub{c(qw'id challenge_id title type state')};
@@ -19,17 +18,8 @@ sub add ($m, $challenge_id, $tasks) {
   $choped_tasks->each(sub ($task, $num) {
     my $id = $m->app->db->insert($m->t_tasks, $task, { returning => 'id' })->hash->{id};
     $tasks->[--$num]->{id} = $id;
-    $m->_process_task_type($tasks->[$num]);
   });
   return $tasks;
-}
-
-sub _process_task_type ($m, $task) {
-  given ($task->{type}) {
-    when ('checklist') {
-      $m->app->model('challenge-task-checklist')->add($task->{id}, c(@{$task->{items}}))
-    }
-  }
 }
 
 1
