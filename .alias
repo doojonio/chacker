@@ -1,0 +1,2 @@
+alias remigrate="./script/chacker eval 'app->pg->migrations->migrate(0)->migrate'";
+alias tidyall='find -type f | grep -P "\.(pl|pm|t)$" | xargs perltidy -b -bext="/"';
