@@ -30,6 +30,7 @@ sub setup_routes($app) {
   my $api = $r->any('/api');
   $api->post('/challenge')->to('challenge#add');
   $api->get('/challenge')->to('challenge#list');
+  $api->put('/task/:id')->to('challenge-task#update');
 }
 
 sub setup_helpers ($app) {

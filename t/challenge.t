@@ -25,4 +25,14 @@ $t->get_ok('/api/challenge')
   ->status_is(200)
   ->json_has('/challenges/1');
 
+my $fields_to_update = {
+  description => 'New description!',
+  title => 'New title!',
+  days => {
+    add => ['2020-09-07', '2020-09-08'],
+  },
+};
+
+$t->put_ok('/api/task/1' => {Accept => '*/*'} => json => $fields_to_update);
+
 &done_testing;
