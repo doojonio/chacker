@@ -1,10 +1,13 @@
 -- 1 up
 BEGIN;
 
+CREATE TYPE challenge_state AS ENUM ('completed', 'in progress', 'new', 'failed');
+
 CREATE TABLE challenges (
-  id          INT          PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  title       VARCHAR(30)  NOT NULL,
-  description VARCHAR(150) NOT NULL
+  id          INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  title       VARCHAR(30)     NOT NULL,
+  description VARCHAR(150)    NOT NULL,
+  state       challenge_state NOT NULL
 );
 
 CREATE TYPE task_type  AS ENUM ('days', 'once');
@@ -33,5 +36,6 @@ DROP TABLE tasks;
 DROP TYPE  task_state;
 DROP TYPE  task_type;
 DROP TABLE challenges;
+DROP TYPE challenge_state;
 
 END;
