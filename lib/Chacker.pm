@@ -34,8 +34,8 @@ sub setup_routes($app) {
 
 sub setup_helpers ($app) {
   $app->helper(
-    'api.cool' => sub ($c, %data) {
-      $c->render(json => \%data, status => 200);
+    'api.cool' => sub ($c, $data) {
+      $c->render(json => $data, status => 200);
     }
   );
   $app->helper(

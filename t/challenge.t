@@ -17,8 +17,8 @@ subtest 'create challenge' => sub {
     ->json_like('/id' => qr/^\d+$/);
   my $created_challenge_id = $t->tx->res->json->{id};
 
-  $t->get_ok('/api/challenge')->status_is(200)->json_has('/challenges/0');
-  my $challenge_from_api = c(@{$t->tx->res->json->{challenges}})->first(sub {
+  $t->get_ok('/api/challenge')->status_is(200)->json_has('/0');
+  my $challenge_from_api = c(@{$t->tx->res->json})->first(sub {
     $_->{id} eq $created_challenge_id;
   });
   ok defined($challenge_from_api), 'created challenge is listed';
