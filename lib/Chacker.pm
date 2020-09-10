@@ -26,8 +26,7 @@ sub setup_db ($app) {
 }
 
 sub setup_routes($app) {
-  my $r   = $app->routes;
-  my $api = $r->any('/api');
+  my $api = $app->create_api_route('/api');
   $api->post('/challenge')->to('challenge#add');
   $api->get('/challenge')->to('challenge#list');
   $api->put('/task/:id')->to('challenge-task#update');
@@ -54,6 +53,22 @@ sub setup_helpers ($app) {
       return \%choped;
     }
   );
+}
+
+sub create_api_route ($app, $url) {
+  my $api = $app->routes->under(
+    $url => sub ($c) {
+      my $headers = $c->res->headers;
+      $headers->header('Access-Control-Allow-Origin'      => '*');
+      $headers->header('Access-Control-Allow-Credentials' => 'true');
+      $headers->header('Access-Control-Allow-Methods'     => 'GET, OPTIONS, POST, DELETE, PUT');
+      $headers->header('Access-Control-Allow-Headers'     => 'Content-Type');
+      $headers->header('Access-Control-Max-Age'           => '1728000');
+    }
+  );
+  $api->options('*')->to(cb => sub ($c) { $c->render(data => '') });
+
+  return $api;
 }
 
 1;
