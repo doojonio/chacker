@@ -1,1 +1,8 @@
-<p>dashboard works!</p>
+<div class="challenge-container">
+  <mat-card *ngFor="let challenge of challenges">
+    <mat-card-header>
+      <mat-card-title>{{ challenge.title }}</mat-card-title>
+      <mat-card-subtitle>{{ challenge.description }}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</div>
