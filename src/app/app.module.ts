@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +21,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+
+    //--Material--------
     MatToolbarModule,
+    //------------------
   ],
   providers: [],
   bootstrap: [AppComponent]
