@@ -8,16 +8,9 @@ import { Challenge } from '../entities/challenge-common';
   styleUrls: ['./dashboard.component.sass']
 })
 export class DashboardComponent implements OnInit {
-  challenges: Challenge[];
 
-  constructor(
-    private challengeService: ChallengeService,
-  ) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.challengeService.list().subscribe(
-      list => this.challenges = list
-    );
-  }
+  ngOnInit(): void { }
 
 }

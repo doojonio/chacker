@@ -13,12 +13,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChallengeListComponent } from './dashboard/challenge-list/challenge-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    ChallengeListComponent,
   ],
   imports: [
     BrowserModule,
