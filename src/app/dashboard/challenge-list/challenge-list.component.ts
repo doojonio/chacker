@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ChallengeService } from '../../challenge.service';
 import { Challenge } from '../../entities/challenge-common';
 
@@ -9,6 +9,7 @@ import { Challenge } from '../../entities/challenge-common';
 })
 export class ChallengeListComponent implements OnInit {
   challenges: Challenge[];
+  @Output() detailRequested = new EventEmitter<number>();
 
   constructor(
     private challengeService: ChallengeService,
@@ -20,4 +21,7 @@ export class ChallengeListComponent implements OnInit {
     );
   }
 
+  requestDetails(challengeId: number) {
+    this.detailRequested.emit(challengeId);
+  }
 }
