@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChallengeListComponent } from './dashboard/challenge-list/challenge-list.component';
+import { WorkshopComponent } from './workshop/workshop.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ChallengeListComponent } from './dashboard/challenge-list/challenge-lis
     NavbarComponent,
     DashboardComponent,
     ChallengeListComponent,
+    WorkshopComponent,
   ],
   imports: [
     BrowserModule,
