@@ -28,7 +28,7 @@ export class WorkshopComponent implements OnInit {
       this._fb.group({
         title: ['', Validators.required],
         description: ['', Validators.required],
-        type: ['', Validators.required],
+        type: ['once', Validators.required],
       })
     ])
   }
@@ -37,7 +37,7 @@ export class WorkshopComponent implements OnInit {
     this.tasks.push(this._fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      type: ['', Validators.required],
+      type: ['once', Validators.required],
     }));
   }
 
