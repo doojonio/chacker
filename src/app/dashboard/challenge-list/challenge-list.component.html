@@ -1,13 +1,13 @@
 <div class="challenge-container">
-  <mat-card *ngFor="let challenge of challenges">
+  <mat-card class="challenge" *ngFor="let challenge of challenges">
     <mat-card-header>
-      <mat-card-title>{{ challenge.title }}</mat-card-title>
-      <mat-card-subtitle>{{ challenge.description }}</mat-card-subtitle>
+      <mat-card-title class="challenge-title">
+        {{ challenge.title }}
+      </mat-card-title>
     </mat-card-header>
-    <mat-card-actions>
-      <button style="float:right" mat-icon-button (click)="showDetails(challenge.id)">
-        <mat-icon>unfold_more</mat-icon>
-      </button>
-    </mat-card-actions>
+    <mat-card-content>
+      <p>{{ challenge.description }}</p>
+      <app-task-list [tasks]="challenge.tasks"></app-task-list>
+    </mat-card-content>
   </mat-card>
 </div>
