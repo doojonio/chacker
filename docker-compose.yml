@@ -1,0 +1,15 @@
+---
+version: '3.8'
+
+services:
+  web:
+    build: .
+    image: chacker_app:latest
+    depends_on:
+      - db
+  db:
+    image: postgres:12
+    environment:
+      - POSTGRES_USER=chacker
+      - POSTGRES_PASSWORD=tzuyu99
+      - POSTGRES_DATABASE=chacker
