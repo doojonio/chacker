@@ -1,1 +1,45 @@
-<p>workshop works!</p>
+<div class="workshop-container">
+<h1>New challenge</h1>
+<mat-vertical-stepper [linear]="true">
+  <mat-step [stepControl]="challenge">
+    <form [formGroup]="challenge">
+      <ng-template matStepLabel>Challenge</ng-template>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" required/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" required></textarea>
+      </mat-form-field>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="tasks">
+    <ng-template matStepLabel>Tasks</ng-template>
+    <div class="task-container" *ngFor="let task of tasks.controls; let i=index">
+      <form [formGroup]="task">
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" required/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option value="once">Once</mat-option>
+            <mat-option value="days">Days</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+      <div class="task-actions">
+        <button *ngIf="tasks.controls.length > 1" mat-icon-button color="primary" (click)="removeTask(i)">
+          <mat-icon>remove</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="step-actions">
+      <button (click)="addTask()" mat-button><mat-icon>add</mat-icon>Add task</button>
+      <button (click)="finish()" mat-button>Finish</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+</div>

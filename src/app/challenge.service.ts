@@ -16,4 +16,7 @@ export class ChallengeService {
     return this.http.get<Challenge[]>('http://localhost:3000/api/challenge');
   }
 
+  public createChallenge(challenge :Challenge) {
+    return this.http.post<any>('http://localhost:3000/api/challenge', challenge);
+  }
 }
