@@ -1,12 +1,12 @@
 use utf8;
-package Chacker::Schema::Result::DayTaskRecord;
+package Chacker::Model::Schema::Result::DayTaskRecord;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-Chacker::Schema::Result::DayTaskRecord
+Chacker::Model::Schema::Result::DayTaskRecord
 
 =cut
 
@@ -68,20 +68,20 @@ __PACKAGE__->set_primary_key("id");
 
 Type: belongs_to
 
-Related object: L<Chacker::Schema::Result::Task>
+Related object: L<Chacker::Model::Schema::Result::Task>
 
 =cut
 
 __PACKAGE__->belongs_to(
   "task",
-  "Chacker::Schema::Result::Task",
+  "Chacker::Model::Schema::Result::Task",
   { id => "task_id" },
   { is_deferrable => 0, on_delete => "NO ACTION", on_update => "NO ACTION" },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2020-09-19 09:59:34
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:uk2GKfVYIt66qvvsoM428g
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2020-09-21 19:55:09
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:vu+2bBXKuyo5RC5VloWTeg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

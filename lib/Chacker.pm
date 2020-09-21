@@ -2,7 +2,7 @@ package Chacker;
 use Mojo::Base 'Mojolicious', -signatures;
 use Mojo::Pg;
 
-use Chacker::Schema;
+use Chacker::Model::Schema;
 
 sub startup ($app) {
   $app->setup_plugins;
@@ -23,13 +23,13 @@ sub setup_webidentity ($app) {
 
 sub setup_db ($app) {
   my $dbconf = $app->config->{db};
-  $app->helper(pg => sub { state $pg = Mojo::Pg->new($dbconf->{mojo_pg}) });
+  $app->helper(pg => sub { state $pg = Mojo::Pg->new($dbconf->{url}) });
   $app->helper(db => sub { $app->pg->db });
   $app->pg->migrations->from_file($app->home . '/etc/migrations.sql')->migrate;
 
   $app->helper(
     schema => sub {
-      state $schema = Chacker::Schema->connect(
+      state $schema = Chacker::Model::Schema->connect(
         $dbconf->{dsn},
         $dbconf->{user},
         $dbconf->{pw},

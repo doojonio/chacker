@@ -1,12 +1,12 @@
 use utf8;
-package Chacker::Schema::Result::Challenge;
+package Chacker::Model::Schema::Result::Challenge;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-Chacker::Schema::Result::Challenge
+Chacker::Model::Schema::Result::Challenge
 
 =cut
 
@@ -84,20 +84,20 @@ __PACKAGE__->set_primary_key("id");
 
 Type: has_many
 
-Related object: L<Chacker::Schema::Result::Task>
+Related object: L<Chacker::Model::Schema::Result::Task>
 
 =cut
 
 __PACKAGE__->has_many(
   "tasks",
-  "Chacker::Schema::Result::Task",
+  "Chacker::Model::Schema::Result::Task",
   { "foreign.challenge_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2020-09-19 09:59:34
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:UOLG/qtkeWKLd9F6Oi+tNw
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2020-09-21 19:55:09
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:blEOPBpnjHpQaB3WTbx3Lw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -12,3 +12,5 @@ services:
     container_name: 'web'
   db:
     container_name: 'db'
+    ports:
+      - '5432:5432'
