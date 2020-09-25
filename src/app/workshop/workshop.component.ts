@@ -3,11 +3,28 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Challenge, Task } from '../entities/challenge-common';
 import { ChallengeService } from '../challenge.service';
 import { Router } from '@angular/router';
+import {
+  animate,
+  trigger,
+  transition,
+  style,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-workshop',
   templateUrl: './workshop.component.html',
-  styleUrls: ['./workshop.component.sass']
+  styleUrls: ['./workshop.component.sass'],
+  animations: [
+    trigger('TaskAppearing', [
+      transition(':enter', [
+        style({ transform: 'translateX(50%)' }),
+        animate('200ms')
+      ]),
+      transition(':leave', [
+        animate('200ms', style({ transform: 'translateX(50%)'}))
+      ]),
+    ]),
+  ]
 })
 export class WorkshopComponent implements OnInit {
   challenge: FormGroup;

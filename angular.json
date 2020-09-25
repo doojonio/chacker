@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "chacker-ng"
+  "defaultProject": "chacker-ng",
+  "cli": {
+    "analytics": "1831b66b-397a-4f34-93f0-2872be1c21f9"
+  }
 }
