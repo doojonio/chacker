@@ -17,11 +17,11 @@ import {
   animations: [
     trigger('TaskAppearing', [
       transition(':enter', [
-        style({ transform: 'translateX(50%)' }),
-        animate('200ms')
+        style({ transform: 'translateX(50%)', height: 0 }),
+        animate('200ms', style({height: '*', transform: 'translateX(0%)'}))
       ]),
       transition(':leave', [
-        animate('200ms', style({ transform: 'translateX(50%)'}))
+        animate('200ms', style({ height: 0, transform: 'translateX(50%)'}))
       ]),
     ]),
   ]
