@@ -20,18 +20,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ChallengeListComponent } from './dashboard/challenge-list/challenge-list.component';
 import { WorkshopComponent } from './workshop/workshop.component';
-import { TaskListComponent } from './dashboard/challenge-list/task-list/task-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     DashboardComponent,
-    ChallengeListComponent,
     WorkshopComponent,
-    TaskListComponent,
   ],
   imports: [
     BrowserModule,

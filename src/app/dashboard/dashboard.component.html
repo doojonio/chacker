@@ -1,1 +1,12 @@
-<app-challenge-list></app-challenge-list>
+<div class="challenge-container">
+  <mat-card class="challenge" *ngFor="let challenge of challenges">
+    <mat-card-header>
+      <mat-card-title class="challenge-title">
+        {{ challenge.title }}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ challenge.description }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
