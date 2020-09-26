@@ -16,13 +16,11 @@ export const opacityAnimations =
           opacity: 0.5
         })
       ]),
-      group([
-        query(':leave', [
-          animate('300ms ease-out', style({ opacity: 0 }))
-        ]),
-        query(':enter', [
-          animate('300ms ease-out', style({ opacity: 1 }))
-        ])
+      query(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 }))
+      ]),
+      query(':enter', [
+        animate('300ms ease-out', style({ opacity: 1 }))
       ]),
       query(':enter', animateChild()),
     ]),
