@@ -5,8 +5,8 @@ CREATE TYPE challenge_state AS ENUM ('completed', 'in progress', 'new', 'failed'
 
 CREATE TABLE challenges (
   id          INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  title       VARCHAR(30)     NOT NULL,
-  description VARCHAR(150)    NOT NULL,
+  title       VARCHAR(100)     NOT NULL,
+  description VARCHAR(300)    NOT NULL,
   state       challenge_state NOT NULL
 );
 
@@ -16,7 +16,7 @@ CREATE TYPE task_state AS ENUM ('completed', 'in progress', 'new', 'failed');
 CREATE TABLE tasks (
   id           INT         PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   challenge_id INT         NOT NULL REFERENCES challenges(id),
-  title        VARCHAR(30) NOT NULL,
+  title        VARCHAR(100) NOT NULL,
   type         task_type   NOT NULL,
   state        task_state  NOT NULL
 );
