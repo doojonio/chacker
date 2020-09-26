@@ -5,8 +5,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { WorkshopComponent } from './workshop/workshop.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'workshop', component: WorkshopComponent },
+  { path: '', component: DashboardComponent, data: {animation: 'dashboard'} },
+  { path: 'workshop', component: WorkshopComponent, data: {animation: 'workshop'} },
 ];
 
 @NgModule({
