@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Task } from '../../entities/challenge-common';
 
 @Component({
   selector: 'app-task-list',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-list.component.sass']
 })
 export class TaskListComponent implements OnInit {
+  @Input() tasks: Task[];
+  displayedColumns: string[] = [
+    'title',
+  ];
 
   constructor() { }
 

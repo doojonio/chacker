@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,6 +50,7 @@ import { TaskListComponent } from './dashboard/task-list/task-list.component';
     MatStepperModule,
     MatListModule,
     MatDividerModule,
+    MatTableModule,
     //------------------
   ],
   providers: [],
