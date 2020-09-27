@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WorkshopComponent } from './workshop/workshop.component';
+import { TaskListComponent } from './dashboard/task-list/task-list.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { WorkshopComponent } from './workshop/workshop.component';
     NavbarComponent,
     DashboardComponent,
     WorkshopComponent,
+    TaskListComponent,
   ],
   imports: [
     BrowserModule,
