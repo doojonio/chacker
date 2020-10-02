@@ -2,9 +2,9 @@
 version: '3.8'
 
 services:
-  web:
-    build: .
-    image: chacker_app:latest
+  backend:
+    build: 'be-mojo/'
+    image: chacker_backend
     depends_on:
       - db
   db:

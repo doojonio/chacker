@@ -1,0 +1,26 @@
+---
+version: '3.8'
+
+services:
+  frontend:
+    build: 'fe-angular/'
+    image: chacker_frontend
+    depends_on:
+      - backend
+    ports:
+      - '4200:4200'
+    volumes:
+      - './fe-angular/:/app'
+    container_name: 'fe'
+  backend:
+    entrypoint: ''
+    command: ['/usr/local/bin/morbo', '/app/script/chacker']
+    ports:
+      - '3000:3000'
+    volumes:
+      - './be-mojo/:/app'
+    container_name: 'be'
+  db:
+    container_name: 'db'
+    ports:
+      - '5432:5432'
