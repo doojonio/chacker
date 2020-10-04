@@ -5,12 +5,16 @@ services:
   frontend:
     build: 'fe-angular/'
     image: chacker_frontend
+    command:
+      - 'serve'
+      - '--host'
+      - '0.0.0.0'
     depends_on:
       - backend
     ports:
       - '4200:4200'
     volumes:
-      - './fe-angular/:/app'
+      - './fe-angular/src/:/app/src/'
     container_name: 'fe'
   backend:
     entrypoint: ''
