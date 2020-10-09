@@ -51,18 +51,8 @@ sub setup_helpers ($app) {
     }
   );
   $app->helper(
-    'api.sad' => sub ($c, $reason) {
-      $c->render(json => {error => $reason}, status => 400);
-    }
-  );
-
-  $app->helper(
-    'chop' => sub ($app, $hash, $fields) {
-      my %choped;
-      for (@$fields) {
-        $choped{$_} = $hash->{$_} if $_ ne 'id';
-      }
-      return \%choped;
+    'api.sad' => sub ($c, $data) {
+      $c->render(json => $data, status => 400);
     }
   );
 }

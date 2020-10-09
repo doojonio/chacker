@@ -11,8 +11,7 @@ my $t = Test::Mojo->new('Chacker');
 my $common_test_challenge = {
   title       => 'test_challenge',
   description => 'test_description',
-  state       => 'new',
-  tasks       => [{title => 'Task#1', state => 'new', type => 'days',},],
+  tasks       => [{title => 'Task#1', type => 'days',},],
 };
 
 subtest 'create challenge' => sub {
@@ -26,6 +25,11 @@ subtest 'create challenge' => sub {
     $_->{id} eq $created_challenge_id;
   });
   ok defined($challenge_from_api), 'created challenge is listed';
+};
+
+subtest 'challenge create fails' => sub {
+  my $challenge = { };
+  $t->post_ok('/api/challenge' => {Accept => '*/*'} => json => $challenge )->status_is(400)->json_has('/errors');
 };
 
 &done_testing;
