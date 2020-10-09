@@ -1,3 +1,4 @@
 requires 'Mojolicious', '>=8.58';
+requires 'Mojo::Pg', '>=4.19';
 requires 'DBIx::Class', '>=0.082';
 requires 'Clone', '>=0.45';

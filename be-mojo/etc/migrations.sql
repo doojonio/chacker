@@ -5,7 +5,7 @@ CREATE TYPE challenge_state AS ENUM ('completed', 'in progress', 'new', 'failed'
 
 CREATE TABLE challenges (
   id          INT             PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  title       VARCHAR(100)     NOT NULL,
+  title       VARCHAR(100)    NOT NULL,
   description VARCHAR(300)    NOT NULL,
   state       challenge_state NOT NULL
 );

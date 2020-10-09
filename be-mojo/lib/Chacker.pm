@@ -1,5 +1,6 @@
 package Chacker;
 use Mojo::Base 'Mojolicious', -signatures;
+use Mojo::Pg;
 
 use Chacker::Model::Schema;
 
@@ -21,6 +22,10 @@ sub setup_webidentity ($app) {
 
 sub setup_db ($app) {
   my $dbconf = $app->config->{db};
+  $app->helper(pg => sub { state $pg = Mojo::Pg->new($dbconf->{url}) });
+  $app->helper(db => sub { $app->pg->db });
+  $app->pg->migrations->from_file($app->home . '/etc/migrations.sql')->migrate;
+
   $app->helper(
     schema => sub {
       state $schema = Chacker::Model::Schema->connect(
@@ -37,9 +42,6 @@ sub setup_routes($app) {
 
   $api->post('/challenge')->to('challenge#add');
   $api->get('/challenge')->to('challenge#list');
-  $api->put('/challenge/:id')->to('challenge#update');
-
-  $api->put('/task/:id')->to('challenge-task#update');
 }
 
 sub setup_helpers ($app) {
