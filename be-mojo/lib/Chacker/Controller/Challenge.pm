@@ -3,13 +3,10 @@ use Mojo::Base 'Mojolicious::Controller', -signatures;
 
 use Clone 'clone';
 
-has challenges =>
-  sub { state $challenges = shift->schema->resultset('Challenge') };
+has challenges => sub { state $challenges = shift->schema->resultset('Challenge') };
 
-has _insert_challenge_fields =>
-  sub {[qw/title description/]};
-has _insert_task_fields =>
-  sub {[qw/title type/]};
+has _insert_challenge_fields => sub { [qw/title description/] };
+has _insert_task_fields      => sub { [qw/title type/] };
 
 sub list ($c) {
   my @challenges = $c->challenges->all;
@@ -18,11 +15,11 @@ sub list ($c) {
     my %ch_h = $ch->get_columns;
     my @tasks_h;
     for my $task ($ch->tasks) {
-      push @tasks_h, {$task->get_columns}
+      push @tasks_h, {$task->get_columns};
     }
     $ch_h{tasks} = \@tasks_h;
 
-    push @ch_h, \%ch_h
+    push @ch_h, \%ch_h;
   }
   return $c->api->cool(\@ch_h);
 }
@@ -30,22 +27,22 @@ sub list ($c) {
 sub add ($c) {
   my $challenge = $c->req->json;
 
-  my($is_challenge, @errors) = $c->is_challenge_hash($challenge);
+  my ($is_challenge, @errors) = $c->is_challenge_hash($challenge);
 
   if (!$is_challenge) {
-    return $c->api->sad({ errors => \@errors });
+    return $c->api->sad({errors => \@errors});
   }
 
   $challenge->{state} = 'new';
-  for my $task (@{ $challenge->{tasks} }) {
+  for my $task (@{$challenge->{tasks}}) {
     $task->{state} = 'new';
   }
 
   my $inserted = $c->challenges->create($challenge);
-  return $c->api->cool({id => $inserted->id });
+  return $c->api->cool({id => $inserted->id});
 }
 
-sub is_challenge_hash($c, $hash) {
+sub is_challenge_hash ($c, $hash) {
   my $challenge = clone($hash);
   my @errors;
   my $tasks;
@@ -58,14 +55,12 @@ sub is_challenge_hash($c, $hash) {
     $tasks = [];
   }
 
-  my($is_challenge_ok, @challenge_errors)
-    = $c->_is_hash_correct($challenge, $c->_insert_challenge_fields);
+  my ($is_challenge_ok, @challenge_errors) = $c->_is_hash_correct($challenge, $c->_insert_challenge_fields);
 
   push @errors, @challenge_errors unless $is_challenge_ok;
 
   for my $task (@$tasks) {
-    my($is_task_ok, @task_errors)
-      = $c->_is_hash_correct($task, $c->_insert_task_fields);
+    my ($is_task_ok, @task_errors) = $c->_is_hash_correct($task, $c->_insert_task_fields);
     push @errors, @task_errors unless $is_task_ok;
   }
 

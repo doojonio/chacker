@@ -1,4 +1,5 @@
 use utf8;
+
 package Chacker::Model::Schema;
 
 # Created by DBIx::Class::Schema::Loader

@@ -28,11 +28,7 @@ sub setup_db ($app) {
 
   $app->helper(
     schema => sub {
-      state $schema = Chacker::Model::Schema->connect(
-        $dbconf->{dsn},
-        $dbconf->{user},
-        $dbconf->{pw},
-      )
+      state $schema = Chacker::Model::Schema->connect($dbconf->{dsn}, $dbconf->{user}, $dbconf->{pw},);
     }
   );
 }

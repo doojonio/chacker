@@ -1,4 +1,5 @@
 use utf8;
+
 package Chacker::Model::Schema::Result::Challenge;
 
 # Created by DBIx::Class::Schema::Loader
@@ -11,23 +12,15 @@ use base 'DBIx::Class::Core';
 __PACKAGE__->table("challenges");
 __PACKAGE__->add_columns(
   "id",
-  {
-    data_type         => "integer",
-    is_auto_increment => 1,
-    is_nullable       => 0,
-    sequence          => "challenges_id_seq",
-  },
+  {data_type => "integer", is_auto_increment => 1, is_nullable => 0, sequence => "challenges_id_seq",},
   "title",
-  { data_type => "varchar", is_nullable => 0, size => 100 },
+  {data_type => "varchar", is_nullable => 0, size => 100},
   "description",
-  { data_type => "varchar", is_nullable => 0, size => 300 },
+  {data_type => "varchar", is_nullable => 0, size => 300},
   "state",
   {
-    data_type => "enum",
-    extra => {
-      custom_type_name => "challenge_state",
-      list => ["completed", "in progress", "new", "failed"],
-    },
+    data_type   => "enum",
+    extra       => {custom_type_name => "challenge_state", list => ["completed", "in progress", "new", "failed"],},
     is_nullable => 0,
   },
 );
@@ -35,8 +28,8 @@ __PACKAGE__->set_primary_key("id");
 __PACKAGE__->has_many(
   "tasks",
   "Chacker::Model::Schema::Result::Task",
-  { "foreign.challenge_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
+  {"foreign.challenge_id" => "self.id"},
+  {cascade_copy           => 0, cascade_delete => 0},
 );
 
 
