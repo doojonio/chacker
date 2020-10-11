@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LayoutModule } from '@angular/cdk/layout';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
@@ -41,6 +42,7 @@ import { ChallengeComponent } from './challenge/challenge.component';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    LayoutModule,
 
     //--Material--------
     MatToolbarModule,
