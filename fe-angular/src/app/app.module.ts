@@ -23,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WorkshopComponent } from './workshop/workshop.component';
-import { TaskListComponent } from './dashboard/task-list/task-list.component';
+import { TaskListComponent } from './challenge/task-list/task-list.component';
+import { ChallengeComponent } from './challenge/challenge.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TaskListComponent } from './dashboard/task-list/task-list.component';
     DashboardComponent,
     WorkshopComponent,
     TaskListComponent,
+    ChallengeComponent,
   ],
   imports: [
     BrowserModule,
