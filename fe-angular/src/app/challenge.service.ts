@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { retry } from 'rxjs/operators';
 import { Challenge } from './entities/challenge-common';
 import { environment } from '../environments/environment';
 
@@ -16,7 +17,9 @@ export class ChallengeService {
   ) { }
 
   public list(): Observable<Challenge[]> {
-    return this.http.get<Challenge[]>(this.listUrl);
+    return this.http.get<Challenge[]>(this.listUrl).pipe(
+      retry(3),
+    );
   }
 
   public createChallenge(challenge :Challenge) {

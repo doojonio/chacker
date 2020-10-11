@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Challenge, Task } from '../entities/challenge-common';
 import { ChallengeService } from '../challenge.service';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   animate,
   trigger,
@@ -34,6 +37,7 @@ export class WorkshopComponent implements OnInit {
     private _fb: FormBuilder,
     private _challengeService: ChallengeService,
     private _r: Router,
+    private _sb: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -63,13 +67,18 @@ export class WorkshopComponent implements OnInit {
   }
 
   finish() {
-    var newChallenge         = new Challenge();
+    if (this.challenge.hasError || this.tasks.hasError) {
+      this._sb.open("Please, fill all fields", "Close", { duration: 3000 });
+      return;
+    }
+
+    let newChallenge         = new Challenge();
     newChallenge.title       = this.challenge.value.title;
     newChallenge.description = this.challenge.value.description;
 
-    var newTasks:Task[] = [];
-    for (var task of this.tasks.controls) {
-      var newTask = new Task();
+    let newTasks:Task[] = [];
+    for (let task of this.tasks.controls) {
+      let newTask = new Task();
       newTask.title = task.value.title;
       newTask.type = task.value.type;
       newTasks.push(newTask);
@@ -77,7 +86,12 @@ export class WorkshopComponent implements OnInit {
 
     newChallenge.tasks = newTasks;
 
-    this._challengeService.createChallenge(newChallenge).subscribe(
+    this._challengeService.createChallenge(newChallenge).pipe(
+      catchError( error => {
+        this._sb.open("Sorry, something went wrong", "Close", { duration: 3000 });
+        return throwError(error)
+      })
+    ).subscribe(
       _ => this._r.navigate(["/"])
     )
   }
