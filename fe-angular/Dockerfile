@@ -9,4 +9,6 @@ EXPOSE 4200
 
 ADD . /app
 
+RUN echo "\ny\n\n" | ng add @angular/material
+
 ENTRYPOINT ["/usr/local/bin/ng"]
