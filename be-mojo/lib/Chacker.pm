@@ -38,6 +38,7 @@ sub setup_routes($app) {
 
   $api->post('/challenge')->to('challenge#add');
   $api->get('/challenge')->to('challenge#list');
+  $api->post('/task/:task_id/record')->to('task#record_day');
 }
 
 sub setup_helpers ($app) {

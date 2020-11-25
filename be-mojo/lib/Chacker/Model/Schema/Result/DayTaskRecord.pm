@@ -9,6 +9,7 @@ use strict;
 use warnings;
 
 use base 'DBIx::Class::Core';
+__PACKAGE__->load_components(qw(InflateColumn::DateTime));
 __PACKAGE__->table("day_task_records");
 __PACKAGE__->add_columns(
   "task_id", {data_type => "integer", is_foreign_key => 1, is_nullable => 0},

@@ -30,7 +30,7 @@ sub add ($c) {
   my ($is_challenge, @errors) = $c->is_challenge_hash($challenge);
 
   if (!$is_challenge) {
-    return $c->api->sad({errors => \@errors});
+    return $c->api->sad({error => \@errors});
   }
 
   $challenge->{state} = 'new';
