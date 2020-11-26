@@ -15,7 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build and run backend tests at once
-        run: |
-          docker-compose up -d db be
-          docker-compose exec -T be prove -vl
+      - name: Up backend with database
+        run: docker-compose up -d db be
+
+      - name: Run tests in backend
+        run: docker-compose exec -T be prove -vl
