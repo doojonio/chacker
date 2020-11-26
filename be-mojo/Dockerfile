@@ -1,7 +1,7 @@
 FROM perl:5.32
 
 ADD cpanfile /cpanfile
-RUN HARNESS_OPTIONS=j4 cpanm --installdeps /
+RUN cpanm -n --installdeps /
 
 WORKDIR /app
 COPY . /app
