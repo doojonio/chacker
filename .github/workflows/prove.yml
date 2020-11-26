@@ -9,11 +9,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-backend:
-    runs-on: ubuntu-latest
+  check-backend:
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Check coding style
+        run: |
+          sudo apt-get install -y perltidy libcode-tidyall-perl
+          tidyall --check-only --conf-file ./be-mojo/.tidyallrc -a
 
       - name: Up backend with database
         run: docker-compose up -d db be

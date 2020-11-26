@@ -30,9 +30,7 @@ subtest 'challenge create fails' => sub {
 };
 
 subtest 'record_day' => sub {
-  my $days_to_record = {
-    days => ['1999-06-14', '2000-02-12'],
-  };
+  my $days_to_record = {days => ['1999-06-14', '2000-02-12'],};
 
   $t->post_ok('/api/task/1/record' => {Accept => '*/*'} => json => $days_to_record)->status_is(200);
 };
