@@ -1,3 +1,4 @@
+![CI](https://github.com/toshikFedotov/chacker/workflows/CI/badge.svg)
 # Chacker
 'hello-world' app for angular-mojolicious bundle
 ## Description
