@@ -18,4 +18,4 @@ jobs:
       - name: Build and run backend tests at once
         run: |
           docker-compose up -d db be
-          docker-compose exec be prove -vl
+          docker-compose exec -T be prove -vl
