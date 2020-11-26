@@ -29,10 +29,14 @@ subtest 'challenge create fails' => sub {
   $t->post_ok('/api/challenge' => {Accept => '*/*'} => json => $challenge)->status_is(400)->json_has('/error');
 };
 
-subtest 'record_day' => sub {
+subtest 'record day' => sub {
   my $days_to_record = {days => ['1999-06-14', '2000-02-12'],};
 
   $t->post_ok('/api/task/1/record' => {Accept => '*/*'} => json => $days_to_record)->status_is(200);
+};
+
+subtest 'get task' => sub {
+  $t->get_ok('/api/task/1')->status_is(200)->json_has('/days');
 };
 
 &done_testing;

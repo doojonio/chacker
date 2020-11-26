@@ -7,6 +7,28 @@ use DateTime;
 has tasks => sub { state $tasks = shift->schema->resultset('Task') };
 has days  => sub { state $tasks = shift->schema->resultset('DayTaskRecord') };
 
+sub get ($c) {
+  my $task_id = $c->param('task_id');
+
+  my $task = $c->tasks->find($task_id);
+
+  unless ($task) {
+    return $c->api->sad({error => "there is no task with id $task_id"});
+  }
+
+  my %response = $task->get_columns;
+  if ($task->type eq 'days') {
+    my @day_records = $task->day_task_records->all;
+    my @days;
+    for my $day_record (@day_records) {
+      push @days, $day_record->day->ymd;
+    }
+    $response{days} = \@days;
+  }
+
+  return $c->api->cool(\%response);
+}
+
 sub record_day ($c) {
   my $task_id        = $c->param('task_id');
   my $days_to_record = $c->req->json('/days');
