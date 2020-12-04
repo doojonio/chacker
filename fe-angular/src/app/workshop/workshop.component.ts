@@ -65,7 +65,6 @@ export class WorkshopComponent implements OnInit {
   addTask() {
     this.tasksForm.push(this._fb.group({
       title: ['', Validators.required],
-      description: ['', Validators.required],
       type: ['once', Validators.required],
     }));
   }
