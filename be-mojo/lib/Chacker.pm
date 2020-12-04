@@ -1,19 +1,18 @@
 package Chacker;
 use Mojo::Base 'Mojolicious', -signatures;
-use Mojo::Pg;
 
 use Chacker::Model::Schema;
+use GraphQL::Plugin::Convert::DBIC;
+use Mojo::File qw(path);
+use Mojo::Pg;
 
 sub startup ($app) {
-  $app->setup_plugins;
+  $app->plugin('NotYAMLConfig');
+
   $app->setup_webidentity;
   $app->setup_db;
   $app->setup_helpers;
   $app->setup_routes;
-}
-
-sub setup_plugins ($app) {
-  $app->plugin('NotYAMLConfig');
 }
 
 sub setup_webidentity ($app) {
@@ -35,11 +34,22 @@ sub setup_db ($app) {
 
 sub setup_routes($app) {
   my $api = $app->create_api_route('/api');
-
   $api->post('/challenge')->to('challenge#add');
   $api->get('/challenge')->to('challenge#list');
   $api->get('/task/:task_id')->to('task#get');
   $api->post('/task/:task_id/record')->to('task#record_day');
+
+  if ($app->mode eq 'development') {
+    path($app->home, 'etc', 'graphql_doc.txt')->spurt(
+      GraphQL::Plugin::Convert::DBIC->to_graphql($app->schema)
+      ->{schema}->to_doc
+    );
+  }
+
+  $app->plugin('GraphQL', {
+    convert  => ['DBIC', $app->schema],
+    endpoint => '/api/graphql',
+  });
 }
 
 sub setup_helpers ($app) {
