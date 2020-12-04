@@ -40,16 +40,11 @@ sub setup_routes($app) {
   $api->post('/task/:task_id/record')->to('task#record_day');
 
   if ($app->mode eq 'development') {
-    path($app->home, 'etc', 'graphql_doc.txt')->spurt(
-      GraphQL::Plugin::Convert::DBIC->to_graphql($app->schema)
-      ->{schema}->to_doc
-    );
+    path($app->home, 'etc', 'graphql_doc.txt')
+      ->spurt(GraphQL::Plugin::Convert::DBIC->to_graphql($app->schema)->{schema}->to_doc);
   }
 
-  $app->plugin('GraphQL', {
-    convert  => ['DBIC', $app->schema],
-    endpoint => '/api/graphql',
-  });
+  $app->plugin('GraphQL', {convert => ['DBIC', $app->schema], endpoint => '/api/graphql',});
 }
 
 sub setup_helpers ($app) {
