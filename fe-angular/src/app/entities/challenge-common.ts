@@ -12,7 +12,7 @@ export class Challenge {
   state: challengeState;
 
   tasks: Task[];
-};
+}
 
 //-- All about task -----
 
@@ -31,4 +31,4 @@ export enum taskType {
 export class Task {
   title: string;
   type: taskType;
-};
+}

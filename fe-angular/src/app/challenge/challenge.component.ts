@@ -4,13 +4,12 @@ import { Challenge } from '../entities/challenge-common';
 @Component({
   selector: 'app-challenge',
   templateUrl: './challenge.component.html',
-  styleUrls: ['./challenge.component.sass']
+  styleUrls: ['./challenge.component.sass'],
 })
 export class ChallengeComponent implements OnInit {
-  @Input() challenge:Challenge;
+  @Input() challenge: Challenge;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {}
-
 }

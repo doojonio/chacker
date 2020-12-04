@@ -4,17 +4,13 @@ import { Task } from '../../entities/challenge-common';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.sass']
+  styleUrls: ['./task-list.component.sass'],
 })
 export class TaskListComponent implements OnInit {
   @Input() tasks: Task[];
-  displayedColumns: string[] = [
-    'title',
-  ];
+  displayedColumns: string[] = ['title'];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

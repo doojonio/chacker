@@ -1,4 +1,7 @@
 <div class="challenge-container">
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <app-challenge *ngFor="let challenge of challenges" [challenge]="challenge"></app-challenge>
+  <app-challenge
+    *ngFor="let challenge of challenges"
+    [challenge]="challenge"
+  ></app-challenge>
 </div>

@@ -6,23 +6,19 @@ import { Challenge } from './entities/challenge-common';
 import { environment } from '../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ChallengeService {
-  listUrl   = environment.backendUrl + "/api/challenge";
-  createUrl = environment.backendUrl + "/api/challenge";
+  listUrl = environment.backendUrl + '/api/challenge';
+  createUrl = environment.backendUrl + '/api/challenge';
 
-  constructor(
-    private http: HttpClient,
-  ) { }
+  constructor(private http: HttpClient) {}
 
   public list(): Observable<Challenge[]> {
-    return this.http.get<Challenge[]>(this.listUrl).pipe(
-      retry(3),
-    );
+    return this.http.get<Challenge[]>(this.listUrl).pipe(retry(3));
   }
 
-  public createChallenge(challenge :Challenge) {
+  public createChallenge(challenge: Challenge) {
     return this.http.post<any>(this.createUrl, challenge);
   }
 }

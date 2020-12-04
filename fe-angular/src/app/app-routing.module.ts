@@ -5,12 +5,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { WorkshopComponent } from './workshop/workshop.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, data: {animation: 'dashboard'} },
-  { path: 'workshop', component: WorkshopComponent, data: {animation: 'workshop'} },
+  { path: '', component: DashboardComponent, data: { animation: 'dashboard' } },
+  {
+    path: 'workshop',
+    component: WorkshopComponent,
+    data: { animation: 'workshop' },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
