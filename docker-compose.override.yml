@@ -2,6 +2,16 @@
 version: '3.8'
 
 services:
+  proxy:
+    image: nginx
+    volumes:
+      - "./etc/nginx.conf:/etc/nginx/nginx.conf"
+    ports:
+      - "80:80"
+    depends_on:
+      - be
+      - fe
+    container_name: 'proxy'
   fe:
     build: 'fe-angular/'
     image: chacker_frontend
@@ -14,7 +24,7 @@ services:
     ports:
       - '4200:4200'
     volumes:
-      - './fe-angular/src/:/app/src/'
+      - './fe-angular:/app'
     container_name: 'fe'
   be:
     entrypoint: ''
