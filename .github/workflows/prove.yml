@@ -15,10 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name:  Install tidyall
+        run: sudo apt-get install -y perltidy libcode-tidyall-perl
+
       - name: Check coding style
-        run: |
-          sudo apt-get install -y perltidy libcode-tidyall-perl
-          tidyall --check-only --conf-file ./be-mojo/.tidyallrc -a
+        run: tidyall --check-only -a
 
       - name: Up backend with database
         run: docker-compose up -d db be
