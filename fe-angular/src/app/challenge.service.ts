@@ -9,8 +9,8 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class ChallengeService {
-  listUrl = environment.backendUrl + '/api/challenge';
-  createUrl = environment.backendUrl + '/api/challenge';
+  private listUrl = environment.backendUrl + '/api/challenge';
+  private createUrl = environment.backendUrl + '/api/challenge';
 
   constructor(private http: HttpClient) {}
 

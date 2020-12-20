@@ -2,7 +2,6 @@ package Chacker;
 use Mojo::Base 'Mojolicious', -signatures;
 
 use Chacker::Model::Schema;
-use GraphQL::Plugin::Convert::DBIC;
 use Mojo::File qw(path);
 use Mojo::Pg;
 
@@ -38,13 +37,6 @@ sub setup_routes($app) {
   $api->get('/challenge')->to('challenge#list');
   $api->get('/task/:task_id')->to('task#get');
   $api->post('/task/:task_id/record')->to('task#record_day');
-
-  if ($app->mode eq 'development') {
-    path($app->home, 'etc', 'graphql_doc.txt')
-      ->spurt(GraphQL::Plugin::Convert::DBIC->to_graphql($app->schema)->{schema}->to_doc);
-  }
-
-  $app->plugin('GraphQL', {convert => ['DBIC', $app->schema], endpoint => '/api/graphql',});
 }
 
 sub setup_helpers ($app) {

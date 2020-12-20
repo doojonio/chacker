@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ChallengeComponent } from './challenge/challenge.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
@@ -39,7 +38,6 @@ import { WorkshopComponent } from './workshop/workshop.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    GraphQLModule,
     HttpClientModule,
     LayoutModule,
     MatButtonModule,
