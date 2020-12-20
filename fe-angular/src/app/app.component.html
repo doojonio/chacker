@@ -1,4 +1,7 @@
-<app-navbar></app-navbar>
-<div [@routeAnimations]="prepareRoute(outlet)">
-  <router-outlet #outlet="outlet"></router-outlet>
+<div class="application-wrapper">
+  <app-navbar></app-navbar>
+  <div class="application-route-content" [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+  <app-footer></app-footer>
 </div>

@@ -1,2 +1,8 @@
-<div class="challenge-container">
-</div>
+<mat-drawer-container [hasBackdrop]="true">
+  <mat-drawer #drawer>
+    It's works!;
+  </mat-drawer>
+  <mat-drawer-content>
+    <button mat-raised-button (click)="drawer.toggle()">Toggle</button>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -12,9 +12,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -22,6 +23,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WorkshopComponent } from './workshop/workshop.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { WorkshopComponent } from './workshop/workshop.component';
     NavbarComponent,
     DashboardComponent,
     WorkshopComponent,
+    FooterComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -45,6 +48,7 @@ import { WorkshopComponent } from './workshop/workshop.component';
     MatListModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    MatSidenavModule,
     MatSnackBarModule,
     MatStepperModule,
     MatTableModule,
