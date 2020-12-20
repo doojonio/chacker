@@ -31,7 +31,7 @@ sub setup_db ($app) {
   );
 }
 
-sub setup_routes($app) {
+sub setup_routes ($app) {
   my $api = $app->create_api_route('/api');
   $api->post('/challenge')->to('challenge#add');
   $api->get('/challenge')->to('challenge#get');

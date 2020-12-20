@@ -11,9 +11,7 @@ has _insert_task_fields      => sub { [qw/title type/] };
 sub get ($c) {
   my @challenges;
   if (my $challenge_id = $c->param('id')) {
-    @challenges = $c->challenges->find($challenge_id) // return $c->api->sad({
-        error => 'Not found',
-    });
+    @challenges = $c->challenges->find($challenge_id) // return $c->api->sad({error => 'Not found',});
   }
   else {
     @challenges = $c->challenges->all;
