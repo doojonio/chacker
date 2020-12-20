@@ -1,0 +1,16 @@
+---
+
+services:
+  proxy:
+    image: nginx:latest
+    volumes:
+      - "./etc/nginx.prod.conf:/etc/nginx/nginx.conf"
+      - "./static/:/static/"
+    ports:
+      - 80:80
+    depends_on:
+      - be
+    container_name: 'proxy'
+  be:
+    entrypoint: ''
+    command: ['/usr/local/bin/hypnotoad', '-f',  '/app/script/chacker']
