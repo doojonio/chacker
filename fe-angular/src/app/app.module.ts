@@ -2,7 +2,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { ChallengeComponent } from './challenge/challenge.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -22,7 +21,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TaskListComponent } from './challenge/task-list/task-list.component';
 import { WorkshopComponent } from './workshop/workshop.component';
 
 @NgModule({
@@ -31,8 +29,6 @@ import { WorkshopComponent } from './workshop/workshop.component';
     NavbarComponent,
     DashboardComponent,
     WorkshopComponent,
-    TaskListComponent,
-    ChallengeComponent,
   ],
   imports: [
     AppRoutingModule,
