@@ -1,13 +1,16 @@
 <mat-drawer-container [hasBackdrop]="false">
   <mat-drawer #drawer mode="side">
     <mat-list>
-      <mat-list-item
-        *ngFor="let challenge of challenges"
-        (click)="selectChallenge(challenge.id)"
-        class="challenge-list-item"
-      >
-        {{ challenge.title }}
-      </mat-list-item>
+      <ng-template ngFor let-challenge [ngForOf]="challenges">
+        <mat-list-item
+          (click)="selectChallenge(challenge.id)"
+          class="challenge-list-item"
+          matRipple
+        >
+          {{ challenge.title }}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-template>
     </mat-list>
   </mat-drawer>
   <mat-drawer-content>

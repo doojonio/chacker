@@ -1,3 +1,14 @@
-<div *ngIf="this.challenge">
-  <p>challenge-details works! selected {{ challenge.title }}</p>
+<div class="challenge-container" *ngIf="this.challenge">
+  <h1>{{ challenge.title | uppercase }}</h1>
+  <p>{{ challenge.description }}</p>
+  <div class="tasks-container">
+    <div *ngIf="onceTasks.length">
+      <h2>Once tasks</h2>
+      <p *ngFor="let task of onceTasks">{{ task.title }}</p>
+    </div>
+    <div *ngIf="daysTasks.length">
+      <h2>Days tasks</h2>
+      <p *ngFor="let task of daysTasks">{{ task.title }}</p>
+    </div>
+  </div>
 </div>
