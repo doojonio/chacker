@@ -24,6 +24,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WorkshopComponent } from './workshop/workshop.component';
 import { FooterComponent } from './footer/footer.component';
+import { ChallengeDetailsComponent } from './dashboard/challenge-details/challenge-details.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FooterComponent } from './footer/footer.component';
     DashboardComponent,
     WorkshopComponent,
     FooterComponent,
+    ChallengeDetailsComponent,
   ],
   imports: [
     AppRoutingModule,

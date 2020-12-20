@@ -34,7 +34,7 @@ sub setup_db ($app) {
 sub setup_routes($app) {
   my $api = $app->create_api_route('/api');
   $api->post('/challenge')->to('challenge#add');
-  $api->get('/challenge')->to('challenge#list');
+  $api->get('/challenge')->to('challenge#get');
   $api->get('/task/:task_id')->to('task#get');
   $api->post('/task/:task_id/record')->to('task#record_day');
 }

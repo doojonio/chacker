@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { retry } from 'rxjs/operators';
+import { retry, tap } from 'rxjs/operators';
 import { Challenge } from './entities/challenge-common';
 import { environment } from '../environments/environment';
 
@@ -9,13 +9,20 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class ChallengeService {
-  private listUrl = environment.backendUrl + '/api/challenge';
+  private getUrl = environment.backendUrl + '/api/challenge';
   private createUrl = environment.backendUrl + '/api/challenge';
 
   constructor(private http: HttpClient) {}
 
   public list(): Observable<Challenge[]> {
-    return this.http.get<Challenge[]>(this.listUrl).pipe(retry(3));
+    return this.http.get<Challenge[]>(this.getUrl).pipe(retry(3));
+  }
+
+  public getById(id: number): Observable<Challenge[]> {
+    const params = new HttpParams().set('id', id.toString());
+    return this.http
+      .get<Challenge[]>(this.getUrl, { params })
+      .pipe(retry(3));
   }
 
   public createChallenge(challenge: Challenge) {

@@ -7,6 +7,7 @@ export enum challengeState {
 }
 
 export class Challenge {
+  id: number;
   title: string;
   description: string;
   state: challengeState;

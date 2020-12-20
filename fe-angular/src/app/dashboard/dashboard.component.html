@@ -1,8 +1,23 @@
-<mat-drawer-container [hasBackdrop]="true">
-  <mat-drawer #drawer>
-    It's works!;
+<mat-drawer-container [hasBackdrop]="false">
+  <mat-drawer #drawer mode="side">
+    <mat-list>
+      <mat-list-item
+        *ngFor="let challenge of challenges"
+        (click)="selectChallenge(challenge.id)"
+        class="challenge-list-item"
+      >
+        {{ challenge.title }}
+      </mat-list-item>
+    </mat-list>
   </mat-drawer>
   <mat-drawer-content>
-    <button mat-raised-button (click)="drawer.toggle()">Toggle</button>
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>
+        {{ drawer.opened ? "chevron_left" : "chevron_right" }}
+      </mat-icon>
+    </button>
+    <app-challenge-details
+      [challengeId]="selectedChallengeId"
+    ></app-challenge-details>
   </mat-drawer-content>
 </mat-drawer-container>

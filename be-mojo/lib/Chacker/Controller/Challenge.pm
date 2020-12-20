@@ -8,8 +8,16 @@ has challenges => sub { state $challenges = shift->schema->resultset('Challenge'
 has _insert_challenge_fields => sub { [qw/title description/] };
 has _insert_task_fields      => sub { [qw/title type/] };
 
-sub list ($c) {
-  my @challenges = $c->challenges->all;
+sub get ($c) {
+  my @challenges;
+  if (my $challenge_id = $c->param('id')) {
+    @challenges = $c->challenges->find($challenge_id) // return $c->api->sad({
+        error => 'Not found',
+    });
+  }
+  else {
+    @challenges = $c->challenges->all;
+  }
   my @ch_h;
   for my $ch (@challenges) {
     my %ch_h = $ch->get_columns;
