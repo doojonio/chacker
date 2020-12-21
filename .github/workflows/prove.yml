@@ -31,4 +31,4 @@ jobs:
       - name: Check coding style
         uses: creyD/prettier_action@v3.1
         with:
-          prettier_options: --check ./fe-angular/src/app/**
+          prettier_options: --check **/app/**/*.{ts,html}
