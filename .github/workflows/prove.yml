@@ -11,7 +11,6 @@ on:
 jobs:
   check-backend:
     runs-on: ubuntu-20.04
-
     steps:
       - uses: actions/checkout@v2
 
@@ -27,6 +26,7 @@ jobs:
       - name: Run tests in backend
         run: docker-compose exec -T be prove -vl
   check-frontend:
+    runs-on: ubuntu-20.04
     steps:
       - name: Check coding style
         uses: creyD/prettier_action@v3.1
