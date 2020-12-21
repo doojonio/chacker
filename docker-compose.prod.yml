@@ -1,5 +1,4 @@
 ---
-
 services:
   proxy:
     image: nginx:latest
@@ -10,7 +9,7 @@ services:
       - 80:80
     depends_on:
       - be
-    container_name: 'proxy'
+    container_name: "proxy"
   be:
-    entrypoint: ''
-    command: ['/usr/local/bin/hypnotoad', '-f',  '/app/script/chacker']
+    entrypoint: ""
+    command: ["/usr/local/bin/hypnotoad", "-f", "/app/script/chacker"]

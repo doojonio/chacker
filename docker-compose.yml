@@ -1,9 +1,9 @@
 ---
-version: '3.8'
+version: "3.8"
 
 services:
   be:
-    build: 'be-mojo/'
+    build: "be-mojo/"
     image: chacker_backend
     depends_on:
       - db

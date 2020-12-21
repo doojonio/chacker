@@ -1,5 +1,5 @@
 ---
-version: '3.8'
+version: "3.8"
 
 services:
   proxy:
@@ -11,30 +11,30 @@ services:
     depends_on:
       - be
       - fe
-    container_name: 'proxy'
+    container_name: "proxy"
   fe:
-    build: 'fe-angular/'
+    build: "fe-angular/"
     image: chacker_frontend
     command:
-      - 'serve'
-      - '--host'
-      - '0.0.0.0'
+      - "serve"
+      - "--host"
+      - "0.0.0.0"
     depends_on:
       - be
     ports:
-      - '4200:4200'
+      - "4200:4200"
     volumes:
-      - './fe-angular:/app'
-    container_name: 'fe'
+      - "./fe-angular:/app"
+    container_name: "fe"
   be:
-    entrypoint: ''
-    command: ['/usr/local/bin/morbo', '/app/script/chacker']
+    entrypoint: ""
+    command: ["/usr/local/bin/morbo", "/app/script/chacker"]
     ports:
-      - '3000:3000'
+      - "3000:3000"
     volumes:
-      - './be-mojo/:/app'
-    container_name: 'be'
+      - "./be-mojo/:/app"
+    container_name: "be"
   db:
-    container_name: 'db'
+    container_name: "db"
     ports:
-      - '5432:5432'
+      - "5432:5432"
