@@ -30,6 +30,8 @@ export enum taskType {
 }
 
 export class Task {
+  id: number;
   title: string;
+  state: taskState;
   type: taskType;
 }

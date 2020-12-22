@@ -2,13 +2,25 @@
   <h1>{{ challenge.title | uppercase }}</h1>
   <p>{{ challenge.description }}</p>
   <div class="tasks-container">
-    <div *ngIf="onceTasks.length">
-      <h2>Once tasks</h2>
-      <p *ngFor="let task of onceTasks">{{ task.title }}</p>
-    </div>
+    <table class="task-table" *ngIf="onceTasks.length">
+      <tr>
+        <th colspan="2">Once tasks</th>
+      </tr>
+      <tr *ngFor="let task of onceTasks">
+        <td matRipple>{{task.title}}</td>
+        <td><button
+              (click)="toggleTaskState(task.id)"
+              mat-icon-button
+              [color] = "task.state == 'completed' ? 'primary': 'foreground'"
+            ><mat-icon>done</mat-icon></button></td>
+      </tr>
+    </table>
     <div *ngIf="daysTasks.length">
       <h2>Days tasks</h2>
       <p *ngFor="let task of daysTasks">{{ task.title }}</p>
     </div>
   </div>
+</div>
+<div class="challenge-container" *ngIf="!this.challenge">
+  <h1>Challenge not selected</h1>
 </div>

@@ -1,8 +1,9 @@
 package Chacker::Controller::Task;
 use Mojo::Base 'Mojolicious::Controller', -signatures;
 
-use List::Util qw(any);
 use DateTime;
+use List::Util qw(any);
+use Mojo::JSON qw(encode_json);
 
 has tasks => sub { state $tasks = shift->schema->resultset('Task') };
 has days  => sub { state $tasks = shift->schema->resultset('DayTaskRecord') };
@@ -27,6 +28,23 @@ sub get ($c) {
   }
 
   return $c->api->cool(\%response);
+}
+
+sub update ($c) {
+  my $task_id = $c->param('task_id')
+    || return $c->api->sad({error => 'wrong id'});
+  my $fields_to_update = $c->req->json
+    || return $c->api->sad({error => 'request body not found'});
+  my $task = $c->tasks->find($task_id)
+    || return $c->api->sad({error => 'no task found'});
+
+  $c->log->debug("Income JSON is:".encode_json($fields_to_update));
+  eval {
+    $task->set_columns($fields_to_update)
+  };
+  return $c->api->sad({error => 'wrong data to update'}) if $@;
+  $task->update;
+  return $c->api->cool({$task->get_columns});
 }
 
 sub record_day ($c) {

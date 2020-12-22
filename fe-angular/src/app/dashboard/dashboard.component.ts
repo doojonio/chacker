@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./dashboard.component.sass'],
 })
 export class DashboardComponent implements OnInit {
-  challenges: Challenge[];
+  challenges: Challenge[] = [];
   selectedChallengeId: Subject<number> = new Subject();
   isLoading: boolean = true;
 

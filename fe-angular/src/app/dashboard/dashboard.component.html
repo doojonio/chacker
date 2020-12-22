@@ -1,6 +1,6 @@
 <mat-drawer-container [hasBackdrop]="false">
   <mat-drawer #drawer mode="side">
-    <mat-list>
+    <mat-list *ngIf="challenges.length">
       <ng-template ngFor let-challenge [ngForOf]="challenges">
         <mat-list-item
           (click)="selectChallenge(challenge.id)"
@@ -12,6 +12,9 @@
         <mat-divider></mat-divider>
       </ng-template>
     </mat-list>
+    <mat-list-item *ngIf="!challenges.length" routerLink="/workshop" class="challenge-list-item" matRipple>
+      <mat-icon>add</mat-icon>
+    </mat-list-item>
   </mat-drawer>
   <mat-drawer-content>
     <button mat-icon-button (click)="drawer.toggle()">

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChallengeService } from '../../challenge.service';
-import { Challenge, Task } from '../../entities/challenge-common';
+import { TaskService } from '../../task.service';
+import { Challenge, Task, taskState } from '../../entities/challenge-common';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -15,7 +16,10 @@ export class ChallengeDetailsComponent implements OnInit {
   daysTasks: Task[];
   onceTasks: Task[];
 
-  constructor(private challengeService: ChallengeService) {}
+  constructor(
+    private challengeService: ChallengeService,
+    private taskService: TaskService,
+  ) {}
 
   ngOnInit(): void {
     this.challengeId.subscribe((newId) => {
@@ -31,5 +35,17 @@ export class ChallengeDetailsComponent implements OnInit {
         }
       });
     });
+  }
+
+  toggleTaskState(id: number): void {
+    let task: Task = this.challenge.tasks.filter(task => task.id == id)[0];
+    let fieldsToUpdate = {
+      state: task.state == taskState.completed ?
+        taskState.inProgress :
+        taskState.completed
+    }
+    this.taskService.update(task.id, fieldsToUpdate).subscribe(
+      updatedTask => task.state = updatedTask.state
+    );
   }
 }

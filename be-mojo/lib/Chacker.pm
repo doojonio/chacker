@@ -3,6 +3,7 @@ use Mojo::Base 'Mojolicious', -signatures;
 
 use Chacker::Model::Schema;
 use Mojo::File qw(path);
+use Mojo::JSON qw(encode_json);
 use Mojo::Pg;
 
 sub startup ($app) {
@@ -36,17 +37,20 @@ sub setup_routes ($app) {
   $api->post('/challenge')->to('challenge#add');
   $api->get('/challenge')->to('challenge#get');
   $api->get('/task/:task_id')->to('task#get');
+  $api->put('/task/:task_id')->to('task#update');
   $api->post('/task/:task_id/record')->to('task#record_day');
 }
 
 sub setup_helpers ($app) {
   $app->helper(
     'api.cool' => sub ($c, $data) {
+      $c->log->debug("Answer is ".encode_json($data));
       $c->render(json => $data, status => 200);
     }
   );
   $app->helper(
     'api.sad' => sub ($c, $data) {
+      $c->log->error("Answer is '$data->{error}'");
       $c->render(json => $data, status => 400);
     }
   );
