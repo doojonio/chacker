@@ -7,12 +7,16 @@
         <th colspan="2">Once tasks</th>
       </tr>
       <tr *ngFor="let task of onceTasks">
-        <td matRipple>{{task.title}}</td>
-        <td><button
-              (click)="toggleTaskState(task.id)"
-              mat-icon-button
-              [color] = "task.state == 'completed' ? 'primary': 'foreground'"
-            ><mat-icon>done</mat-icon></button></td>
+        <td matRipple>{{ task.title }}</td>
+        <td>
+          <button
+            (click)="toggleTaskState(task.id)"
+            mat-icon-button
+            [color]="task.state == 'completed' ? 'primary' : 'foreground'"
+          >
+            <mat-icon>done</mat-icon>
+          </button>
+        </td>
       </tr>
     </table>
     <div *ngIf="daysTasks.length">

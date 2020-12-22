@@ -44,7 +44,7 @@ sub setup_routes ($app) {
 sub setup_helpers ($app) {
   $app->helper(
     'api.cool' => sub ($c, $data) {
-      $c->log->debug("Answer is ".encode_json($data));
+      $c->log->debug("Answer is " . encode_json($data));
       $c->render(json => $data, status => 200);
     }
   );

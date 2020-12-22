@@ -18,7 +18,7 @@ export class ChallengeDetailsComponent implements OnInit {
 
   constructor(
     private challengeService: ChallengeService,
-    private taskService: TaskService,
+    private taskService: TaskService
   ) {}
 
   ngOnInit(): void {
@@ -38,14 +38,15 @@ export class ChallengeDetailsComponent implements OnInit {
   }
 
   toggleTaskState(id: number): void {
-    let task: Task = this.challenge.tasks.filter(task => task.id == id)[0];
+    let task: Task = this.challenge.tasks.filter((task) => task.id == id)[0];
     let fieldsToUpdate = {
-      state: task.state == taskState.completed ?
-        taskState.inProgress :
-        taskState.completed
-    }
-    this.taskService.update(task.id, fieldsToUpdate).subscribe(
-      updatedTask => task.state = updatedTask.state
-    );
+      state:
+        task.state == taskState.completed
+          ? taskState.inProgress
+          : taskState.completed,
+    };
+    this.taskService
+      .update(task.id, fieldsToUpdate)
+      .subscribe((updatedTask) => (task.state = updatedTask.state));
   }
 }

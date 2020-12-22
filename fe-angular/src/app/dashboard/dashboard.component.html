@@ -12,7 +12,12 @@
         <mat-divider></mat-divider>
       </ng-template>
     </mat-list>
-    <mat-list-item *ngIf="!challenges.length" routerLink="/workshop" class="challenge-list-item" matRipple>
+    <mat-list-item
+      *ngIf="!challenges.length"
+      routerLink="/workshop"
+      class="challenge-list-item"
+      matRipple
+    >
       <mat-icon>add</mat-icon>
     </mat-list-item>
   </mat-drawer>

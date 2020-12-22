@@ -6,14 +6,14 @@ import { Task } from './entities/challenge-common';
 import { environment } from '../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TaskService {
-  private updateUrl = environment.backendUrl + "/api/task";
+  private updateUrl = environment.backendUrl + '/api/task';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  public update(taskId:number, fields: any): Observable<Task> {
+  public update(taskId: number, fields: any): Observable<Task> {
     return this.http.put<Task>(this.updateUrl + `/${taskId}`, fields);
   }
 }
