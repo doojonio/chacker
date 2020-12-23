@@ -21,7 +21,9 @@ export class ChallengeDetailsComponent implements OnInit {
   ngOnInit(): void {
     this._route.paramMap.subscribe(params => {
       this.challengeId = Number(params.get('challengeId'));
-      this.fetchChallenge();
+      if (this.challengeId) {
+        this.fetchChallenge();
+      }
     });
   }
 
