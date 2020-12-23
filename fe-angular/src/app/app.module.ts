@@ -24,12 +24,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ChallengeListComponent } from './challenge-list/challenge-list.component';
+import { ChallengeDetailsComponent } from './challenge-details/challenge-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ChallengeListComponent,
+    ChallengeDetailsComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -3,5 +3,7 @@
     <mat-sidenav #sidenav mode="side" opened>
         <app-challenge-list></app-challenge-list>
     </mat-sidenav>
-    <mat-sidenav-content>Challenge details</mat-sidenav-content>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
 </mat-sidenav-container>
