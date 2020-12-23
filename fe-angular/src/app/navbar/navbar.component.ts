@@ -3,17 +3,16 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.sass']
+  styleUrls: ['./navbar.component.sass'],
 })
 export class NavbarComponent implements OnInit {
-  @Output() needToggleSidenav = new EventEmitter()
+  @Output() needToggleSidenav = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  askToggleSidenav():void {
+  askToggleSidenav(): void {
     this.needToggleSidenav.emit();
   }
 }

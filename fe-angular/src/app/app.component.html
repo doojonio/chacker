@@ -1,9 +1,9 @@
 <app-navbar (needToggleSidenav)="sidenav.toggle()"></app-navbar>
 <mat-sidenav-container>
-    <mat-sidenav #sidenav mode="side" opened>
-        <app-challenge-list></app-challenge-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
+  <mat-sidenav #sidenav mode="side" opened>
+    <app-challenge-list></app-challenge-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>

@@ -6,8 +6,8 @@ import { ChallengeDetailsComponent } from './challenge-details/challenge-details
 const routes: Routes = [
   {
     path: ':challengeId',
-    component: ChallengeDetailsComponent
-  }
+    component: ChallengeDetailsComponent,
+  },
 ];
 
 @NgModule({
