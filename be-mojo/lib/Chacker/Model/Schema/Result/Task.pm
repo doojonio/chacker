@@ -9,6 +9,7 @@ use strict;
 use warnings;
 
 use base 'DBIx::Class::Core';
+__PACKAGE__->load_components("InflateColumn::DateTime");
 __PACKAGE__->table("tasks");
 __PACKAGE__->add_columns(
   "id",
@@ -17,6 +18,8 @@ __PACKAGE__->add_columns(
   {data_type => "integer", is_foreign_key => 1, is_nullable => 0},
   "title",
   {data_type => "varchar", is_nullable => 0, size => 100},
+  "description",
+  {data_type => "varchar", is_nullable => 0, size => 300},
   "type",
   {data_type => "enum", extra => {custom_type_name => "task_type", list => ["days", "once"]}, is_nullable => 0,},
   "state",
@@ -24,6 +27,20 @@ __PACKAGE__->add_columns(
     data_type   => "enum",
     extra       => {custom_type_name => "task_state", list => ["completed", "in progress", "new", "failed"],},
     is_nullable => 0,
+  },
+  "create_time",
+  {
+    data_type     => "timestamp",
+    default_value => \"current_timestamp",
+    is_nullable   => 0,
+    original      => {default_value => \"now()"},
+  },
+  "change_time",
+  {
+    data_type     => "timestamp",
+    default_value => \"current_timestamp",
+    is_nullable   => 0,
+    original      => {default_value => \"now()"},
   },
 );
 __PACKAGE__->set_primary_key("id");
@@ -37,10 +54,14 @@ __PACKAGE__->has_many(
   "day_task_records", "Chacker::Model::Schema::Result::DayTaskRecord",
   {"foreign.task_id" => "self.id"}, {cascade_copy => 0, cascade_delete => 0},
 );
+__PACKAGE__->has_many(
+  "task_notes", "Chacker::Model::Schema::Result::TaskNote",
+  {"foreign.task_id" => "self.id"}, {cascade_copy => 0, cascade_delete => 0},
+);
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2020-10-10 12:23:21
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:tgiO39ns7LZr4SqZpGiKFg
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2020-12-24 10:42:09
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jr6RCOxGrHuA5pjbzfNLvA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
