@@ -29,13 +29,15 @@ CREATE TABLE tasks (
 CREATE TABLE task_notes (
   id      SERIAL       PRIMARY KEY,
   task_id INT          NOT NULL REFERENCES tasks(id),
-  note    VARCHAR(500) NOT NULL
+  note    VARCHAR(500) NOT NULL,
+  create_time  TIMESTAMP    NOT NULL DEFAULT now()
 );
 
 CREATE TABLE challenge_notes(
   id           SERIAL       PRIMARY KEY,
   challenge_id INT          NOT NULL REFERENCES challenges(id),
-  note         VARCHAR(500) NOT NULL
+  note         VARCHAR(500) NOT NULL,
+  create_time  TIMESTAMP    NOT NULL DEFAULT now()
 );
 
 CREATE TABLE day_task_records (
