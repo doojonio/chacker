@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   backendUrl: 'http://localhost',
+  storageUrl: 'http://localhost/storage/',
 };
 
 /*

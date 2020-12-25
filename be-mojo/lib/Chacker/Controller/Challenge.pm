@@ -9,25 +9,32 @@ has _insert_challenge_fields => sub { [qw/title description picture/] };
 has _insert_task_fields      => sub { [qw/title description type picture/] };
 
 sub get ($c) {
-  my @challenges;
-  if (my $challenge_id = $c->param('id')) {
-    @challenges = $c->challenges->find($challenge_id) // return $c->api->sad({error => 'Not found',});
-  }
-  else {
-    @challenges = $c->challenges->all;
-  }
-  my @ch_h;
-  for my $ch (@challenges) {
-    my %ch_h = $ch->get_columns;
-    my @tasks_h;
-    for my $task ($ch->tasks) {
-      push @tasks_h, {$task->get_columns};
-    }
-    $ch_h{tasks} = \@tasks_h;
+  my $challenge_id = $c->param('challenge_id');
 
-    push @ch_h, \%ch_h;
+  my $ch = $c->challenges->find($challenge_id)
+    || return $c->api->sad({error => "no challenge with id = $challenge_id found"});
+  my %response = $ch->get_columns;
+  $response{picture} = $ch->picture->path;
+
+  my @tasks_h;
+  for my $task ($ch->tasks) {
+    push @tasks_h, {
+      $task->get_columns, picture => $task->picture->path
+    };
   }
-  return $c->api->cool(\@ch_h);
+
+  $response{tasks} = \@tasks_h;
+
+  return $c->api->cool(\%response);
+}
+
+sub list ($c) {
+  my @challenges = $c->challenges->all;
+  my @response;
+  for my $ch (@challenges) {
+    push @response, {$ch->get_columns};
+  }
+  return $c->api->cool(\@response);
 }
 
 sub add ($c) {

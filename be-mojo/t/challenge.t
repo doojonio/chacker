@@ -50,4 +50,9 @@ subtest 'get task' => sub {
   $t->get_ok('/api/task/1')->status_is(200)->json_has('/days');
 };
 
+subtest 'get challenge' => sub {
+  $t->get_ok('/api/challenge/1')->status_is(200)->json_has('/picture')
+    ->json_like('/picture' => qr/^\w{4}\//)
+};
+
 &done_testing;
