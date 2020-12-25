@@ -6,6 +6,7 @@ services:
     image: nginx
     volumes:
       - "./etc/nginx.conf:/etc/nginx/nginx.conf"
+      - "./uploads/:/mnt/storage/"
     ports:
       - "80:80"
     depends_on:
@@ -33,6 +34,7 @@ services:
       - "3000:3000"
     volumes:
       - "./be-mojo/:/app"
+      - "./uploads/:/mnt/uploads/"
     container_name: "be"
   db:
     container_name: "db"

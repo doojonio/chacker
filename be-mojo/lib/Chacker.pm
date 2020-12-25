@@ -39,6 +39,8 @@ sub setup_routes ($app) {
   $api->get('/task/:task_id')->to('task#get');
   $api->put('/task/:task_id')->to('task#update');
   $api->post('/task/:task_id/record')->to('task#record_day');
+
+  $api->post('/upload/image')->to('upload#image');
 }
 
 sub setup_helpers ($app) {
@@ -50,7 +52,7 @@ sub setup_helpers ($app) {
   );
   $app->helper(
     'api.sad' => sub ($c, $data) {
-      $c->log->error("Answer is '$data->{error}'");
+      $c->log->error('Answer is ' . encode_json($data));
       $c->render(json => $data, status => 400);
     }
   );

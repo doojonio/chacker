@@ -5,8 +5,8 @@ use Clone 'clone';
 
 has challenges => sub { state $challenges = shift->schema->resultset('Challenge') };
 
-has _insert_challenge_fields => sub { [qw/title description/] };
-has _insert_task_fields      => sub { [qw/title description type/] };
+has _insert_challenge_fields => sub { [qw/title description picture/] };
+has _insert_task_fields      => sub { [qw/title description type picture/] };
 
 sub get ($c) {
   my @challenges;

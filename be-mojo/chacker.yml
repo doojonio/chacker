@@ -6,3 +6,5 @@ db:
   dsn:  'dbi:Pg:dbname=chacker;host=db'
   user: 'chacker'
   pw:   'tzuyu99'
+uploads:
+  save_to: '/mnt/uploads/'

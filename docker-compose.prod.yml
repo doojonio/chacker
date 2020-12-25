@@ -5,6 +5,7 @@ services:
     volumes:
       - "./etc/nginx.prod.conf:/etc/nginx/nginx.conf"
       - "./static/:/static/"
+      - "./uploads/:/mnt/storage/"
     ports:
       - 80:80
     depends_on:
@@ -13,3 +14,5 @@ services:
   be:
     entrypoint: ""
     command: ["/usr/local/bin/hypnotoad", "-f", "/app/script/chacker"]
+    volumes:
+      - "./uploads/:/mnt/uploads/"

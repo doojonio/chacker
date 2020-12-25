@@ -1,6 +1,13 @@
 -- 1 up
 BEGIN;
 
+CREATE TABLE images (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(300) NOT NULL,
+  path TEXT NOT NULL,
+  upload_time TIMESTAMP NOT NULL DEFAULT now()
+);
+
 CREATE TYPE challenge_state AS ENUM ('completed', 'in progress', 'new', 'failed');
 
 CREATE TABLE challenges (
@@ -8,8 +15,9 @@ CREATE TABLE challenges (
   title       VARCHAR(100)    NOT NULL,
   description VARCHAR(300)    NOT NULL,
   state       challenge_state NOT NULL,
-  create_time TIMESTAMP NOT NULL DEFAULT now(),
-  change_time TIMESTAMP NOT NULL DEFAULT now()
+  picture     INT             REFERENCES images(id) NOT NULL,
+  create_time TIMESTAMP       NOT NULL DEFAULT now(),
+  change_time TIMESTAMP       NOT NULL DEFAULT now()
 );
 
 CREATE TYPE task_type  AS ENUM ('days', 'once');
@@ -20,10 +28,11 @@ CREATE TABLE tasks (
   challenge_id INT          NOT NULL REFERENCES challenges(id),
   title        VARCHAR(100) NOT NULL,
   description  VARCHAR(300) NOT NULL,
+  picture      INT          REFERENCES images(id) NOT NULL,
   type         task_type    NOT NULL,
   state        task_state   NOT NULL,
-  create_time  TIMESTAMP NOT NULL DEFAULT now(),
-  change_time  TIMESTAMP NOT NULL DEFAULT now()
+  create_time  TIMESTAMP    NOT NULL DEFAULT now(),
+  change_time  TIMESTAMP    NOT NULL DEFAULT now()
 );
 
 CREATE TABLE task_notes (
