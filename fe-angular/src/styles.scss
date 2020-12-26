@@ -1,0 +1,25 @@
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+$chacker-primary: mat-palette($mat-deep-orange);
+$chacker-accent: mat-palette($mat-green, A200, A100, A400);
+
+$chacker-warn: mat-palette($mat-red);
+
+$chacker-theme: mat-dark-theme(
+  (
+    color: (
+      primary: $chacker-primary,
+      accent: $chacker-accent,
+      warn: $chacker-warn,
+    ),
+  )
+);
+
+@include angular-material-theme($chacker-theme);

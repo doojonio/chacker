@@ -18,9 +18,7 @@ sub get ($c) {
 
   my @tasks_h;
   for my $task ($ch->tasks) {
-    push @tasks_h, {
-      $task->get_columns, picture => $task->picture->path
-    };
+    push @tasks_h, {$task->get_columns, picture => $task->picture->path};
   }
 
   $response{tasks} = \@tasks_h;

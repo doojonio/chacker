@@ -1,21 +1,24 @@
 <ng-template [ngIf]="challenge">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>{{challenge.title | uppercase}}</mat-card-title>
+      <mat-card-title>{{ challenge.title | uppercase }}</mat-card-title>
       <mat-card-subtitle>
-        {{challenge.description}}
-        <span ngNonBindable>&#183;</span>
-        {{challenge.createTime | date}}
+        {{ challenge.state }}
+        <span>&#183;</span>
+        {{ challenge.createTime | date }}
+      </mat-card-subtitle>
+      <mat-card-subtitle>
+        {{ challenge.description }}
       </mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="challenge.pictureUrl"/>
+    <img mat-card-image [src]="challenge.pictureUrl" />
     <mat-card-content class="task-container">
       <mat-card class="task" *ngFor="let task of challenge.tasks">
         <mat-card-header>
-          <mat-card-title>{{task.title | uppercase}}</mat-card-title>
-          <mat-card-subtitle>{{task.description}}</mat-card-subtitle>
+          <mat-card-title>{{ task.title | uppercase }}</mat-card-title>
+          <mat-card-subtitle>{{ task.description }}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="task.pictureUrl">
+        <img mat-card-image [src]="task.pictureUrl" />
       </mat-card>
     </mat-card-content>
   </mat-card>
