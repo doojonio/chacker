@@ -15,31 +15,23 @@ my $common_test_challenge = {
   title       => 'test_challenge',
   description => 'test_description',
   picture     => undef,
-  tasks       => [
-    {
-      title       => 'Task#1',
-      description => 'Tzuyu...',
-      type        => 'days',
-      picture     => undef
-    },
-  ],
+  tasks       => [{title => 'Task#1', description => 'Tzuyu...', type => 'days', picture => undef},],
 };
 
 subtest 'upload image' => sub {
   my $form = {image => {file => $example_image},};
-  $t->post_ok('/api/upload/image', form => $form)->status_is(200)
-    ->json_has('/id');
+  $t->post_ok('/api/upload/image', form => $form)->status_is(200)->json_has('/id');
 
   # fill for following tests
   my $uploaded_image = $t->tx->res->json;
   $common_test_challenge->{picture} = $uploaded_image->{id};
-  $_->{picture} = $uploaded_image->{id} for @{$common_test_challenge->{tasks}};
+  $_->{picture}                     = $uploaded_image->{id} for @{$common_test_challenge->{tasks}};
 };
 
 subtest 'create challenge' => sub {
   my $challenge = clone($common_test_challenge);
-  $t->post_ok('/api/challenge' => {Accept => '*/*'} => json => $challenge)
-    ->status_is(200)->json_has('/id')->json_like('/id' => qr/^\d+$/);
+  $t->post_ok('/api/challenge' => {Accept => '*/*'} => json => $challenge)->status_is(200)->json_has('/id')
+    ->json_like('/id' => qr/^\d+$/);
   my $created_challenge_id = $t->tx->res->json->{id};
 
   $t->get_ok('/api/challenge')->status_is(200)->json_has('/0');
@@ -51,8 +43,7 @@ subtest 'create challenge' => sub {
 
 subtest 'challenge create fails' => sub {
   my $challenge = {};
-  $t->post_ok('/api/challenge' => {Accept => '*/*'} => json => $challenge)
-    ->status_is(400)->json_has('/error');
+  $t->post_ok('/api/challenge' => {Accept => '*/*'} => json => $challenge)->status_is(400)->json_has('/error');
 };
 
 subtest 'get task' => sub {
@@ -60,8 +51,7 @@ subtest 'get task' => sub {
 };
 
 subtest 'get challenge' => sub {
-  $t->get_ok('/api/challenge/1')->status_is(200)->json_has('/picture')
-    ->json_like('/picture/path' => qr/^\w{4}\//);
+  $t->get_ok('/api/challenge/1')->status_is(200)->json_has('/picture')->json_like('/picture/path' => qr/^\w{4}\//);
 };
 
 &done_testing;
