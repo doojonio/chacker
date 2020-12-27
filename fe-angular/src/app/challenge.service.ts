@@ -33,7 +33,8 @@ export class ChallengeService {
   }
 
   private _addPictureUrls(challenge: Challenge): void {
-    challenge.pictureUrl = environment.staticStorageUrl + challenge.picture.path;
+    challenge.pictureUrl =
+      environment.staticStorageUrl + challenge.picture.path;
     challenge.tasks.forEach((task) => {
       task.pictureUrl = environment.staticStorageUrl + task.picture.path;
     });

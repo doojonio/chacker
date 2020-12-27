@@ -2,41 +2,51 @@
   <!-- Challenge -->
   <div class="challenge-common-form">
     <div class="challenge-fields">
-        <div class="field-wrapper">
-          <mat-form-field appearance="outline">
-            <mat-label>Title</mat-label>
-            <textarea matInput cdkTextareaAutosize formControlName="title">
-            </textarea>
-            <mat-error>This challenge needs title</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="field-wrapper">
-          <mat-form-field appearance="outline">
-            <mat-label>Challenge's description</mat-label>
-            <textarea
-              matInput
-              cdkTextareaAutosize
-              formControlName="description"
-              placeholder="Description"
-            >
-            </textarea>
-            <mat-error>Describe your new challenge</mat-error>
-          </mat-form-field>
-        </div>
+      <div class="field-wrapper">
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <textarea matInput cdkTextareaAutosize formControlName="title">
+          </textarea>
+          <mat-error>This challenge needs title</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="field-wrapper">
+        <mat-form-field appearance="outline">
+          <mat-label>Challenge's description</mat-label>
+          <textarea
+            matInput
+            cdkTextareaAutosize
+            formControlName="description"
+            placeholder="Description"
+          >
+          </textarea>
+          <mat-error>Describe your new challenge</mat-error>
+        </mat-form-field>
+      </div>
     </div>
     <mat-divider vertical></mat-divider>
     <div class="challenge-picture-container">
       <h1>Challenge wallpaper</h1>
       <mat-divider></mat-divider>
-      <app-upload *ngIf="!challengeUploadedImage"
-        (fileUploaded)="onUploadChallengePicture($event)">
+      <app-upload
+        *ngIf="!challengeUploadedImage"
+        (fileUploaded)="onUploadChallengePicture($event)"
+      >
       </app-upload>
       <mat-card *ngIf="challengeUploadedImage">
-        <mat-card-header><mat-card-title>{{challengeUploadedImage.name}}</mat-card-title></mat-card-header>
-        <img mat-card-image [src]="challengeUploadedImage.storageUrl">
+        <mat-card-header
+          ><mat-card-title>{{
+            challengeUploadedImage.name
+          }}</mat-card-title></mat-card-header
+        >
+        <img mat-card-image [src]="challengeUploadedImage.storageUrl" />
         <mat-card-footer>
           <mat-card-actions>
-            <button (click)="resetChallengeWallpaper()" mat-raised-button color="accent">
+            <button
+              (click)="resetChallengeWallpaper()"
+              mat-raised-button
+              color="accent"
+            >
               <mat-icon>undo</mat-icon>
               <span> Reset image</span>
             </button>
@@ -51,10 +61,10 @@
     <app-task-form (taskCreated)="addTask($event)"></app-task-form>
     <mat-card *ngFor="let task of tasks">
       <mat-card-header>
-        <mat-card-title>{{task.title}}</mat-card-title>
-        <mat-card-subtitle>{{task.description}}</mat-card-subtitle>
+        <mat-card-title>{{ task.title }}</mat-card-title>
+        <mat-card-subtitle>{{ task.description }}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image [src]="task.pictureUrl">
+      <img mat-card-image [src]="task.pictureUrl" />
     </mat-card>
   </div>
 </form>

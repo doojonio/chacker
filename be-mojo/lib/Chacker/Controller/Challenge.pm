@@ -14,11 +14,11 @@ sub get ($c) {
   my $ch = $c->challenges->find($challenge_id)
     || return $c->api->sad({error => "no challenge with id = $challenge_id found"});
   my %response = $ch->get_columns;
-  $response{picture} = { $ch->picture->get_columns };
+  $response{picture} = {$ch->picture->get_columns};
 
   my @tasks_h;
   for my $task ($ch->tasks) {
-    push @tasks_h, {$task->get_columns, picture => { $task->picture->get_columns }};
+    push @tasks_h, {$task->get_columns, picture => {$task->picture->get_columns}};
   }
 
   $response{tasks} = \@tasks_h;

@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.scss']
+  styleUrls: ['./task-form.component.scss'],
 })
 export class TaskFormComponent implements OnInit {
   @Output()
@@ -18,9 +18,7 @@ export class TaskFormComponent implements OnInit {
   taskForm: FormGroup;
   uploadedImage: UploadedImage;
 
-  constructor(
-    private _fb: FormBuilder,
-  ) { }
+  constructor(private _fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.taskForm = this._fb.group({
@@ -43,7 +41,7 @@ export class TaskFormComponent implements OnInit {
   }
 
   addImage(uploadedImage$: Observable<UploadedImage>) {
-    uploadedImage$.subscribe(uploadedImage => {
+    uploadedImage$.subscribe((uploadedImage) => {
       this.uploadedImage = uploadedImage;
     });
   }

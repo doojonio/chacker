@@ -1,32 +1,50 @@
 <form [formGroup]="taskForm">
-<mat-card>
+  <mat-card>
     <mat-card-header>
-        <mat-form-field>
-            <textarea formControlName="title" matInput cdkTextareaAutosize placeholder="Task's title">
-            </textarea>
-            <mat-error>Please, add title for this task</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <textarea formControlName="description" matInput cdkTextareaAutosize placeholder="Task's description">
-            </textarea>
-            <mat-error>This task needs description</mat-error>
-        </mat-form-field>
-        <div>
-            <mat-label>Select type of the task:</mat-label>
-            <mat-radio-group formControlName="type">
-                <mat-radio-button value="once">Once</mat-radio-button>
-                <mat-radio-button value="days">Days</mat-radio-button>
-            </mat-radio-group>
-        </div>
+      <mat-form-field>
+        <textarea
+          formControlName="title"
+          matInput
+          cdkTextareaAutosize
+          placeholder="Task's title"
+        >
+        </textarea>
+        <mat-error>Please, add title for this task</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea
+          formControlName="description"
+          matInput
+          cdkTextareaAutosize
+          placeholder="Task's description"
+        >
+        </textarea>
+        <mat-error>This task needs description</mat-error>
+      </mat-form-field>
+      <div>
+        <mat-label>Select type of the task:</mat-label>
+        <mat-radio-group formControlName="type">
+          <mat-radio-button value="once">Once</mat-radio-button>
+          <mat-radio-button value="days">Days</mat-radio-button>
+        </mat-radio-group>
+      </div>
     </mat-card-header>
     <mat-divider></mat-divider>
-    <img *ngIf="uploadedImage" [src]="uploadedImage.storageUrl" mat-card-image>
+    <img
+      *ngIf="uploadedImage"
+      [src]="uploadedImage.storageUrl"
+      mat-card-image
+    />
     <mat-card-content *ngIf="!uploadedImage">
-        <app-upload (fileUploaded)="addImage($event)"></app-upload>
+      <app-upload (fileUploaded)="addImage($event)"></app-upload>
     </mat-card-content>
     <mat-card-actions>
-        <button *ngIf="uploadedImage" (click)="resetImage()" mat-button><mat-icon>undo</mat-icon>Reset picture</button>
-        <button (click)="createTask()" mat-button><mat-icon>add</mat-icon>Add task</button>
+      <button *ngIf="uploadedImage" (click)="resetImage()" mat-button>
+        <mat-icon>undo</mat-icon>Reset picture
+      </button>
+      <button (click)="createTask()" mat-button>
+        <mat-icon>add</mat-icon>Add task
+      </button>
     </mat-card-actions>
-</mat-card>
+  </mat-card>
 </form>

@@ -1,19 +1,19 @@
 mat-card-header {
+  display: flex;
+  flex-flow: column;
+  mat-radio-group {
     display: flex;
     flex-flow: column;
-    mat-radio-group {
-        display: flex;
-        flex-flow: column;
 
-        mat-radio-button {
-            margin: 5px;
-        }
+    mat-radio-button {
+      margin: 5px;
     }
+  }
 }
 mat-card-content {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 img {
-    max-height: 400px;
+  max-height: 400px;
 }

@@ -1,7 +1,13 @@
 import { Observable } from 'rxjs';
 
 import {
-    Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  OnInit,
+  Output,
+  ViewChild,
 } from '@angular/core';
 
 import { UploadService } from '../upload.service';
@@ -24,7 +30,7 @@ export class UploadComponent implements OnInit {
   ngOnInit(): void {}
 
   public openFileExplorer() {
-    const event = new MouseEvent('click', {bubbles: false});
+    const event = new MouseEvent('click', { bubbles: false });
     this.fileInput.nativeElement.dispatchEvent(event);
   }
 
@@ -50,10 +56,9 @@ export class UploadComponent implements OnInit {
   }
 
   private _uploadFile(file: File) {
-      const response: Observable<UploadedImage> = this._uploadService.uploadImage(
-        file
-      );
-      this.fileUploaded.emit(response);
+    const response: Observable<UploadedImage> = this._uploadService.uploadImage(
+      file
+    );
+    this.fileUploaded.emit(response);
   }
-
 }
