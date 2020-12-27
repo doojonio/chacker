@@ -24,7 +24,6 @@ export class ChallengeService {
       tap((challenge) => {
         this._fixSnakecaseFields(challenge);
         this._addPictureUrls(challenge);
-        console.log(challenge);
       }),
       catchError((error) => {
         console.log(error);
@@ -34,9 +33,9 @@ export class ChallengeService {
   }
 
   private _addPictureUrls(challenge: Challenge): void {
-    challenge.pictureUrl = environment.staticStorageUrl + challenge.picture;
+    challenge.pictureUrl = environment.staticStorageUrl + challenge.picture.path;
     challenge.tasks.forEach((task) => {
-      task.pictureUrl = environment.staticStorageUrl + task.picture;
+      task.pictureUrl = environment.staticStorageUrl + task.picture.path;
     });
   }
 

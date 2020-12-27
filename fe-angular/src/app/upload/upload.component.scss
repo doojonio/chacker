@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    div {
+        text-align: center;
+    }
+}
+input {
+    display: none;
+}

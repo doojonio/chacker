@@ -4,16 +4,18 @@ import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Task } from '../task';
 import { UploadedImage } from '../uploaded-image';
 
 @Component({
   selector: 'app-challenge-create',
   templateUrl: './challenge-create.component.html',
-  styleUrls: ['./challenge-create.component.sass'],
+  styleUrls: ['./challenge-create.component.scss'],
 })
 export class ChallengeCreateComponent implements OnInit {
-  challengeImageUrl: string;
+  challengeUploadedImage: UploadedImage;
   challengeFormGroup: FormGroup;
+  tasks: Task[] = [];
 
   constructor(private _fb: FormBuilder) {}
 
@@ -27,10 +29,16 @@ export class ChallengeCreateComponent implements OnInit {
 
   onUploadChallengePicture(response: Observable<UploadedImage>) {
     response.subscribe((uploadedImage) => {
-      console.log(uploadedImage);
-      this.challengeImageUrl =
-        environment.staticStorageUrl + uploadedImage.path;
+      this.challengeUploadedImage = uploadedImage;
     });
+  }
+
+  resetChallengeWallpaper() {
+    this.challengeUploadedImage = null;
+  }
+
+  addTask(task: Task) {
+    this.tasks.push(task);
   }
 
   private _generateTaskFormGroup(): FormGroup {

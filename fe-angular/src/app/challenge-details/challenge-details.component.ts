@@ -7,7 +7,7 @@ import { ChallengeService } from '../challenge.service';
 @Component({
   selector: 'app-challenge-details',
   templateUrl: './challenge-details.component.html',
-  styleUrls: ['./challenge-details.component.sass'],
+  styleUrls: ['./challenge-details.component.scss'],
 })
 export class ChallengeDetailsComponent implements OnInit {
   challengeId: number;

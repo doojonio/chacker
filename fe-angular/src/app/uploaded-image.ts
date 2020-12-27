@@ -1,8 +1,10 @@
 export class UploadedImage {
   id: number;
   path: string;
-  filename: string;
+  name: string;
   uploadTime: string;
+
+  storageUrl: string;
 
   // Webservice snakecase fields
   upload_time: string;

@@ -1,0 +1,9 @@
+<input #fileInput (change)="uploadSelectedFile($event.target.files)" type="file">
+<div>
+    <h3>Drop image here</h3>
+    <p>or</p>
+    <button mat-button (click)="openFileExplorer()">
+        <mat-icon>folder_open</mat-icon>
+        Open file explorer
+    </button>
+</div>

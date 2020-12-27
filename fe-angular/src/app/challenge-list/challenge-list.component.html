@@ -1,11 +1,11 @@
 <h2>Challenges</h2>
 <mat-divider></mat-divider>
 <mat-action-list>
+  <button mat-icon-button routerLink="/new"><mat-icon>add</mat-icon></button>
   <mat-list-item
     [routerLink]="['/', challenge.id]"
     *ngFor="let challenge of challenges"
   >
     {{ challenge.title }}
   </mat-list-item>
-  <button mat-icon-button routerLink="/new"><mat-icon>add</mat-icon></button>
 </mat-action-list>

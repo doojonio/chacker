@@ -9,9 +9,7 @@ a {
 
 $chacker-primary: mat-palette($mat-deep-orange);
 $chacker-accent: mat-palette($mat-green, A200, A100, A400);
-
 $chacker-warn: mat-palette($mat-red);
-
 $chacker-theme: mat-dark-theme(
   (
     color: (
@@ -22,4 +20,32 @@ $chacker-theme: mat-dark-theme(
   )
 );
 
+// Custom components
+@mixin upload-color($config-or-theme) {
+  $config: mat-get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+
+  app-upload {
+    border: 2px dashed mat-color($accent);
+    color: mat-color($accent);
+  }
+}
+@mixin upload-typography($config-or-theme) {
+  $config: mat-get-typography-config($config-or-theme);
+}
+
+@mixin upload-theme($theme) {
+  $color: mat-get-color-config($theme);
+  $typography: mat-get-typography-config($theme);
+
+  @if $color != null {
+    @include upload-color($color);
+  }
+  @if $typography != null {
+    @include upload-typography($typography);
+  }
+}
+
 @include angular-material-theme($chacker-theme);
+@include upload-theme($chacker-theme);

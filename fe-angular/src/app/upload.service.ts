@@ -20,6 +20,7 @@ export class UploadService {
     return this._http.post<UploadedImage>(urlForUploading, formData).pipe(
       tap((image) => {
         this._fixSnakecaseFields(image);
+        image.storageUrl = environment.staticStorageUrl + image.path;
       })
     );
   }

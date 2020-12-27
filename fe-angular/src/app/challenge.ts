@@ -1,4 +1,5 @@
 import { Task } from './task';
+import { UploadedImage } from './uploaded-image';
 
 export class Challenge {
   id: number;
@@ -6,7 +7,7 @@ export class Challenge {
   description: number;
   tasks: Task[];
   state: ChallengeStates;
-  picture: string | number;
+  picture: UploadedImage;
   pictureUrl: string;
 
   createTime: string;

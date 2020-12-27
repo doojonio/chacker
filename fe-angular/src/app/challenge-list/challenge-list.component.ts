@@ -6,7 +6,7 @@ import { ChallengeService } from '../challenge.service';
 @Component({
   selector: 'app-challenge-list',
   templateUrl: './challenge-list.component.html',
-  styleUrls: ['./challenge-list.component.sass'],
+  styleUrls: ['./challenge-list.component.scss'],
 })
 export class ChallengeListComponent implements OnInit {
   challenges: Challenge[];

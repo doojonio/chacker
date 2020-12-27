@@ -1,9 +1,11 @@
+import { UploadedImage } from './uploaded-image';
+
 export class Task {
   id: number;
   title: string;
   description: string;
   state: TaskStates;
-  picture: string | number;
+  picture: UploadedImage;
   pictureUrl: string;
 
   createTime: string;

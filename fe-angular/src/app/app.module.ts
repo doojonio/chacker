@@ -1,4 +1,3 @@
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -14,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -26,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChallengeCreateComponent } from './challenge-create/challenge-create.component';
+import { TaskFormComponent } from './challenge-create/task-from/task-form.component';
 import { ChallengeDetailsComponent } from './challenge-details/challenge-details.component';
 import { ChallengeListComponent } from './challenge-list/challenge-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -39,6 +40,7 @@ import { UploadComponent } from './upload/upload.component';
     ChallengeDetailsComponent,
     ChallengeCreateComponent,
     UploadComponent,
+    TaskFormComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -64,7 +66,7 @@ import { UploadComponent } from './upload/upload.component';
     MatRippleModule,
     MatGridListModule,
     MatMenuModule,
-    DragDropModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
