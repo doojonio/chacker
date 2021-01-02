@@ -47,7 +47,10 @@ sub add ($c) {
   $challenge->{state} = 'new';
   for my $task (@{$challenge->{tasks}}) {
     $task->{state} = 'new';
+    $task->{picture} = $task->{picture}{id};
   }
+
+  $challenge->{picture} = $challenge->{picture}{id};
 
   my $inserted = $c->challenges->create($challenge);
   return $c->api->cool({id => $inserted->id});

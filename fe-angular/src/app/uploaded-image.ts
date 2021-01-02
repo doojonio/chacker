@@ -9,3 +9,8 @@ export class UploadedImage {
   // Webservice snakecase fields
   upload_time: string;
 }
+
+export enum ImageShapeFormat {
+  wide = 16/9,
+  photo = 4/3,
+};

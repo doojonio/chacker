@@ -1,0 +1,14 @@
+<image-cropper
+    format="jpeg"
+    [imageFile]="image"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="aspectRatio"
+    [cropperMaxWidth]="cropperMaxWidth"
+    [cropperMaxHeight]="cropperMaxHeight"
+    (imageCropped)="handleCroppedImage($event)"
+></image-cropper>
+<div mat-dialog-actions>
+<span style="flex: 1 1 auto"></span>
+<button mat-button (click)="justClose()">Close</button>
+<button mat-button (click)="saveAndClose()">Save</button>
+</div>

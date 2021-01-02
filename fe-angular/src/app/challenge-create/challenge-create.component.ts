@@ -1,11 +1,13 @@
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
+import { Challenge } from '../challenge';
+import { ChallengeService } from '../challenge.service';
 import { Task } from '../task';
-import { UploadedImage } from '../uploaded-image';
+import { ImageShapeFormat, UploadedImage } from '../uploaded-image';
 
 @Component({
   selector: 'app-challenge-create',
@@ -17,13 +19,18 @@ export class ChallengeCreateComponent implements OnInit {
   challengeFormGroup: FormGroup;
   tasks: Task[] = [];
 
-  constructor(private _fb: FormBuilder) {}
+  CHALLENGE_IMAGE_FORMAT = ImageShapeFormat.wide;
+
+  constructor(
+    private _fb: FormBuilder,
+    private _challengeService: ChallengeService,
+    private _router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.challengeFormGroup = this._fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      tasks: this._fb.array([this._generateTaskFormGroup()]),
     });
   }
 
@@ -41,11 +48,25 @@ export class ChallengeCreateComponent implements OnInit {
     this.tasks.push(task);
   }
 
-  private _generateTaskFormGroup(): FormGroup {
-    return this._fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      type: ['', Validators.required],
-    });
+  finish() {
+    if (!this._isFormValid()) {
+      return;
+    }
+    const challenge = this.challengeFormGroup.value as Challenge;
+    challenge.tasks = this.tasks;
+    challenge.picture = this.challengeUploadedImage;
+
+    this._challengeService.create(challenge).subscribe(
+      createResult => {
+        this._router.navigate([createResult.id])
+      }
+    );
+  }
+
+  private _isFormValid() {
+    let isFieldsAreValid = this.challengeFormGroup.valid && this.tasks.length > 0;
+    let isWallpaperChoosed = !!this.challengeUploadedImage;
+
+    return isFieldsAreValid && isWallpaperChoosed;
   }
 }

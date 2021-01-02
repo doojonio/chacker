@@ -30,6 +30,8 @@
       <mat-divider></mat-divider>
       <app-upload
         *ngIf="!challengeUploadedImage"
+        [imageShapeFormat]="CHALLENGE_IMAGE_FORMAT"
+        [imageMinSize]="1024*50"
         (fileUploaded)="onUploadChallengePicture($event)"
       >
       </app-upload>
@@ -66,5 +68,9 @@
       </mat-card-header>
       <img mat-card-image [src]="task.pictureUrl" />
     </mat-card>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="form-actions">
+    <button (click)="finish()" mat-button>Finish</button>
   </div>
 </form>

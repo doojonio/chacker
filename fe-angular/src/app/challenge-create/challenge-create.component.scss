@@ -30,6 +30,10 @@
     flex: 1 1 auto;
   }
 
+  mat-card {
+    width: 95%;
+  }
+
   mat-card-actions {
     display: flex;
     flex-flow: row wrap;
@@ -41,10 +45,20 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
+  align-items: flex-start;
   padding: 30px;
 
   app-task-form,
   mat-card {
+    flex: 0 0 300px;
     margin-right: 30px;
+    margin-bottom: 30px;
   }
+}
+
+.form-actions {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

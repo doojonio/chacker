@@ -24,8 +24,8 @@ subtest 'upload image' => sub {
 
   # fill for following tests
   my $uploaded_image = $t->tx->res->json;
-  $common_test_challenge->{picture} = $uploaded_image->{id};
-  $_->{picture}                     = $uploaded_image->{id} for @{$common_test_challenge->{tasks}};
+  $common_test_challenge->{picture} = $uploaded_image;
+  $_->{picture}                     = $uploaded_image for @{$common_test_challenge->{tasks}};
 };
 
 subtest 'create challenge' => sub {

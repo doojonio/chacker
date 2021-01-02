@@ -1,17 +1,35 @@
-import { Observable, of } from 'rxjs';
-import { catchError, switchMap, tap } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from '../environments/environment';
-import { Challenge } from './challenge';
+import { Challenge, ChallengeDto, ChallengeDtoFields } from './challenge';
+import { pick } from './pick';
+import { TaskDto, TaskDtoFields } from './task';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChallengeService {
   constructor(private _http: HttpClient) {}
+
+  create(challenge: Challenge) {
+    let dataTransferObject = pick(challenge, ChallengeDtoFields) as ChallengeDto;
+    dataTransferObject.tasks = challenge.tasks.map(task => {
+      return pick(task, TaskDtoFields) as TaskDto;
+    });
+
+    const urlForCreating = environment.backendUrl + '/api/challenge';
+    return this._http.post<Challenge>(urlForCreating, dataTransferObject).pipe(
+      catchError(err => {
+        console.log(err);
+        console.log(dataTransferObject);
+        return throwError(err);
+      }),
+    );
+  }
 
   list(): Observable<Challenge[]> {
     const listUrl = environment.backendUrl + '/api/challenge';

@@ -1,15 +1,22 @@
 import { UploadedImage } from './uploaded-image';
 
-export class Task {
+export const TaskDtoFields: string[] = [
+  "id",
+  "title",
+  "description",
+  "state",
+  "type",
+  "picture",
+  "create_time",
+  "change_time",
+];
+export class TaskDto {
   id: number;
   title: string;
   description: string;
-  state: TaskStates;
+  state: TaskState;
+  type: TaskType;
   picture: UploadedImage;
-  pictureUrl: string;
-
-  createTime: string;
-  changeTime: string;
 
   // ---
   // snakecase fields from webservices (added for compatibility)
@@ -17,9 +24,19 @@ export class Task {
   create_time: string;
   change_time: string;
   // ---
+};
+export class Task extends TaskDto {
+  pictureUrl: string;
+  createTime: string;
+  changeTime: string;
 }
 
-export enum TaskStates {
+export enum TaskType {
+  once =  'once',
+  days = 'days',
+}
+
+export enum TaskState {
   inProgress = 'in progress',
   completed = 'completed',
   new = 'new',

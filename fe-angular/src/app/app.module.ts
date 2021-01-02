@@ -1,3 +1,5 @@
+import { ImageCropperModule } from 'ngx-image-cropper';
+
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -5,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -30,6 +33,7 @@ import { TaskFormComponent } from './challenge-create/task-from/task-form.compon
 import { ChallengeDetailsComponent } from './challenge-details/challenge-details.component';
 import { ChallengeListComponent } from './challenge-list/challenge-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CropperDialogComponent } from './upload/cropper-dialog/cropper-dialog.component';
 import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
@@ -39,6 +43,7 @@ import { UploadComponent } from './upload/upload.component';
     ChallengeListComponent,
     ChallengeDetailsComponent,
     ChallengeCreateComponent,
+    CropperDialogComponent,
     UploadComponent,
     TaskFormComponent,
   ],
@@ -47,15 +52,21 @@ import { UploadComponent } from './upload/upload.component';
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
+    ImageCropperModule,
     LayoutModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
     MatSelectModule,
     MatSidenavModule,
     MatSnackBarModule,
@@ -63,10 +74,6 @@ import { UploadComponent } from './upload/upload.component';
     MatTableModule,
     MatToolbarModule,
     ReactiveFormsModule,
-    MatRippleModule,
-    MatGridListModule,
-    MatMenuModule,
-    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

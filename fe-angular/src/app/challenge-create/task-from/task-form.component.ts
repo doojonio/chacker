@@ -38,6 +38,9 @@ export class TaskFormComponent implements OnInit {
     newTask.pictureUrl = environment.staticStorageUrl + newTask.picture.path;
 
     this.taskCreated.emit(newTask);
+
+    this.resetImage();
+    this.taskForm.reset();
   }
 
   addImage(uploadedImage$: Observable<UploadedImage>) {

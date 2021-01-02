@@ -36,7 +36,11 @@
       mat-card-image
     />
     <mat-card-content *ngIf="!uploadedImage">
-      <app-upload (fileUploaded)="addImage($event)"></app-upload>
+      <app-upload
+        (fileUploaded)="addImage($event)"
+        [imageMaxHeight]="500"
+        [imageMaxSize]="1024 * 100"
+      ></app-upload>
     </mat-card-content>
     <mat-card-actions>
       <button *ngIf="uploadedImage" (click)="resetImage()" mat-button>
