@@ -24,7 +24,7 @@ export class ChallengeCreateComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _challengeService: ChallengeService,
-    private _router: Router,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -56,15 +56,14 @@ export class ChallengeCreateComponent implements OnInit {
     challenge.tasks = this.tasks;
     challenge.picture = this.challengeUploadedImage;
 
-    this._challengeService.create(challenge).subscribe(
-      createResult => {
-        this._router.navigate([createResult.id])
-      }
-    );
+    this._challengeService.create(challenge).subscribe((createResult) => {
+      this._router.navigate([createResult.id]);
+    });
   }
 
   private _isFormValid() {
-    let isFieldsAreValid = this.challengeFormGroup.valid && this.tasks.length > 0;
+    let isFieldsAreValid =
+      this.challengeFormGroup.valid && this.tasks.length > 0;
     let isWallpaperChoosed = !!this.challengeUploadedImage;
 
     return isFieldsAreValid && isWallpaperChoosed;

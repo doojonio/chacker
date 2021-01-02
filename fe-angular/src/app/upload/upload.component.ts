@@ -1,7 +1,14 @@
 import { Observable } from 'rxjs';
 
 import {
-    Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
 } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -9,7 +16,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UploadService } from '../upload.service';
 import { ImageShapeFormat, UploadedImage } from '../uploaded-image';
 import {
-    CropperDialogComponent, generateRecomendedMatDialogConfig
+  CropperDialogComponent,
+  generateRecomendedMatDialogConfig,
 } from './cropper-dialog/cropper-dialog.component';
 
 @Component({
@@ -39,7 +47,7 @@ export class UploadComponent implements OnInit {
   constructor(
     private _uploadService: UploadService,
     private _matDialogService: MatDialog,
-    private _snackBar: MatSnackBar,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {}
@@ -69,7 +77,7 @@ export class UploadComponent implements OnInit {
     if (!this._checkImageSize(file)) {
       return;
     }
-    this._openCropperDialog(file)
+    this._openCropperDialog(file);
   }
 
   private _checkImageSize(file: File) {
@@ -78,18 +86,18 @@ export class UploadComponent implements OnInit {
 
     if (this.imageMaxSize && file.size > this.imageMaxSize) {
       isLesserThenMaxSize = false;
-      this._warn("You image is too big")
+      this._warn('You image is too big');
     }
     if (this.imageMinSize && file.size < this.imageMinSize) {
       isBiggerThenMinSize = false;
-      this._warn("You image is too small")
+      this._warn('You image is too small');
     }
 
     return isLesserThenMaxSize && isBiggerThenMinSize;
   }
 
   private _warn(message: string) {
-      this._snackBar.open(message, "Close", {duration: 2000})
+    this._snackBar.open(message, 'Close', { duration: 2000 });
   }
 
   private _uploadFile(file: File) {
@@ -112,11 +120,11 @@ export class UploadComponent implements OnInit {
       dialogConfig
     );
 
-    this._cropperDialogRef.afterClosed().subscribe(croppedImage => {
+    this._cropperDialogRef.afterClosed().subscribe((croppedImage) => {
       if (croppedImage == null) {
         return;
       }
       this._uploadFile(croppedImage);
-    })
+    });
   }
 }

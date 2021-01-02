@@ -31,7 +31,7 @@
       <app-upload
         *ngIf="!challengeUploadedImage"
         [imageShapeFormat]="CHALLENGE_IMAGE_FORMAT"
-        [imageMinSize]="1024*50"
+        [imageMinSize]="1024 * 50"
         (fileUploaded)="onUploadChallengePicture($event)"
       >
       </app-upload>

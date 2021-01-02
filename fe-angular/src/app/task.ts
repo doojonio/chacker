@@ -1,14 +1,14 @@
 import { UploadedImage } from './uploaded-image';
 
 export const TaskDtoFields: string[] = [
-  "id",
-  "title",
-  "description",
-  "state",
-  "type",
-  "picture",
-  "create_time",
-  "change_time",
+  'id',
+  'title',
+  'description',
+  'state',
+  'type',
+  'picture',
+  'create_time',
+  'change_time',
 ];
 export class TaskDto {
   id: number;
@@ -24,7 +24,7 @@ export class TaskDto {
   create_time: string;
   change_time: string;
   // ---
-};
+}
 export class Task extends TaskDto {
   pictureUrl: string;
   createTime: string;
@@ -32,7 +32,7 @@ export class Task extends TaskDto {
 }
 
 export enum TaskType {
-  once =  'once',
+  once = 'once',
   days = 'days',
 }
 

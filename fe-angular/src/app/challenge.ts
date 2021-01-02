@@ -2,14 +2,14 @@ import { Task, TaskDto } from './task';
 import { UploadedImage } from './uploaded-image';
 
 export const ChallengeDtoFields: string[] = [
-  "id",
-  "title",
-  "description",
-  "tasks",
-  "state",
-  "picture",
-  "create_time",
-  "change_time",
+  'id',
+  'title',
+  'description',
+  'tasks',
+  'state',
+  'picture',
+  'create_time',
+  'change_time',
 ];
 export class ChallengeDto {
   id: number;
@@ -25,13 +25,12 @@ export class ChallengeDto {
   create_time: string;
   change_time: string;
   // ---
-};
+}
 export class Challenge extends ChallengeDto {
   tasks: Task[];
   pictureUrl: string;
   createTime: string;
   changeTime: string;
-
 }
 
 export enum ChallengeState {

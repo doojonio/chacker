@@ -16,18 +16,21 @@ export class ChallengeService {
   constructor(private _http: HttpClient) {}
 
   create(challenge: Challenge) {
-    let dataTransferObject = pick(challenge, ChallengeDtoFields) as ChallengeDto;
-    dataTransferObject.tasks = challenge.tasks.map(task => {
+    let dataTransferObject = pick(
+      challenge,
+      ChallengeDtoFields
+    ) as ChallengeDto;
+    dataTransferObject.tasks = challenge.tasks.map((task) => {
       return pick(task, TaskDtoFields) as TaskDto;
     });
 
     const urlForCreating = environment.backendUrl + '/api/challenge';
     return this._http.post<Challenge>(urlForCreating, dataTransferObject).pipe(
-      catchError(err => {
+      catchError((err) => {
         console.log(err);
         console.log(dataTransferObject);
         return throwError(err);
-      }),
+      })
     );
   }
 

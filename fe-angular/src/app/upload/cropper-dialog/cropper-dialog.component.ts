@@ -2,7 +2,11 @@ import { base64ToFile, ImageCroppedEvent } from 'ngx-image-cropper';
 import { ImageShapeFormat } from 'src/app/uploaded-image';
 
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogConfig,
+  MatDialogRef,
+} from '@angular/material/dialog';
 
 export function generateRecomendedMatDialogConfig(): MatDialogConfig {
   const config: MatDialogConfig = {
@@ -16,7 +20,7 @@ export function generateRecomendedMatDialogConfig(): MatDialogConfig {
 @Component({
   selector: 'app-cropper-dialog',
   templateUrl: './cropper-dialog.component.html',
-  styleUrls: ['./cropper-dialog.component.scss']
+  styleUrls: ['./cropper-dialog.component.scss'],
 })
 export class CropperDialogComponent implements OnInit {
   image: File;
@@ -29,10 +33,11 @@ export class CropperDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<CropperDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: any,
+    public data: any
   ) {
     this.image = data.image;
-    this.aspectRatio = (data.imageShapeFormat || ImageShapeFormat.photo) as number;
+    this.aspectRatio = (data.imageShapeFormat ||
+      ImageShapeFormat.photo) as number;
     this.cropperMaxHeight = data.imageMaxHeight || 0;
     this.cropperMaxWidth = data.imageMaxWidth || 0;
   }
@@ -45,7 +50,7 @@ export class CropperDialogComponent implements OnInit {
 
   saveAndClose() {
     const fileName = this.image.name;
-    const croppedImageAsFile = new File([this._croppedImage], fileName)
+    const croppedImageAsFile = new File([this._croppedImage], fileName);
     this.dialogRef.close(croppedImageAsFile);
   }
 

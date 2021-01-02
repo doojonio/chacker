@@ -11,6 +11,6 @@ export class UploadedImage {
 }
 
 export enum ImageShapeFormat {
-  wide = 16/9,
-  photo = 4/3,
-};
+  wide = 16 / 9,
+  photo = 4 / 3,
+}

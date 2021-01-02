@@ -46,7 +46,7 @@ sub add ($c) {
 
   $challenge->{state} = 'new';
   for my $task (@{$challenge->{tasks}}) {
-    $task->{state} = 'new';
+    $task->{state}   = 'new';
     $task->{picture} = $task->{picture}{id};
   }
 
