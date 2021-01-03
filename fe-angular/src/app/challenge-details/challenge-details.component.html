@@ -11,15 +11,18 @@
         {{ challenge.description }}
       </mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="challenge.pictureUrl" />
+    <app-spinner *ngIf="isChallengeWallpaperLoading"></app-spinner>
+    <img
+      mat-card-image
+      [style.display]="isChallengeWallpaperLoading ? 'none' : ''"
+      (load)="onChallengeWallpaperLoaded()"
+      [src]="challenge.pictureUrl"
+    />
     <mat-card-content class="task-container">
-      <mat-card class="task" *ngFor="let task of challenge.tasks">
-        <mat-card-header>
-          <mat-card-title>{{ task.title | uppercase }}</mat-card-title>
-          <mat-card-subtitle>{{ task.description }}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image [src]="task.pictureUrl" />
-      </mat-card>
+      <app-task-details
+        *ngFor="let task of challenge.tasks"
+        [task]="task"
+      ></app-task-details>
     </mat-card-content>
   </mat-card>
 </ng-template>

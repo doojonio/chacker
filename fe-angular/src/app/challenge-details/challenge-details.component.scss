@@ -1,9 +1,10 @@
-div.task-container {
+.task-container {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
-}
+  justify-content: flex-start;
+  align-items: flex-start;
 
-.task {
-  max-width: 400px;
+  app-task-details {
+    flex: 0 0 25%;
+  }
 }

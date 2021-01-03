@@ -13,6 +13,8 @@ export class ChallengeDetailsComponent implements OnInit {
   challengeId: number;
   challenge: Challenge;
 
+  isChallengeWallpaperLoading = true;
+
   constructor(
     private _route: ActivatedRoute,
     private _challengeService: ChallengeService
@@ -31,5 +33,9 @@ export class ChallengeDetailsComponent implements OnInit {
     this._challengeService.getById(this.challengeId).subscribe((challenge) => {
       this.challenge = challenge;
     });
+  }
+
+  onChallengeWallpaperLoaded() {
+    this.isChallengeWallpaperLoading = false;
   }
 }

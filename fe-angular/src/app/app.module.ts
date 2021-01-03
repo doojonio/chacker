@@ -35,6 +35,8 @@ import { ChallengeListComponent } from './challenge-list/challenge-list.componen
 import { NavbarComponent } from './navbar/navbar.component';
 import { CropperDialogComponent } from './upload/cropper-dialog/cropper-dialog.component';
 import { UploadComponent } from './upload/upload.component';
+import { TaskDetailsComponent } from './challenge-details/task-details/task-details.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { UploadComponent } from './upload/upload.component';
     CropperDialogComponent,
     UploadComponent,
     TaskFormComponent,
+    TaskDetailsComponent,
+    SpinnerComponent,
   ],
   imports: [
     AppRoutingModule,
